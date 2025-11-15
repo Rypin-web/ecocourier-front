@@ -13,10 +13,14 @@ import {
     SheetTitle,
     SheetTrigger
 } from "@/components/ui/sheet.tsx";
+import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
+import {UserAuthManager} from "@/widgets/UserAuthManager.tsx";
 
 function Header() {
+
     return (
-        <header className={cn('sticky top-0 z-50 w-full px-10 py-3 shadow-sm flex items-center gap-10')}>
+        <header className={cn('sticky top-0 z-50 w-full px-1 md:px-10 py-3 shadow-sm flex items-center gap-1',
+            ' md:gap-10')}>
             <Link to={'/'}>
                 <Package2 className={cn('size-10 stroke-sidebar-primary hover:stroke-primary transition-colors')} />
             </Link>
@@ -40,41 +44,44 @@ function Header() {
                     </ItemActions>
                 </ItemContent>
             </Item>
-            <Sheet>
-                <SheetTrigger asChild>
-                    <Button
-                        size={"icon"}
-                        variant={'ghost'}
-                        className={cn('group p-5')}
-                    >
-                        <UserRound className={cn('size-8 transition-all duration-300',
-                            'group-hover:stroke-sidebar-primary'
-                        )} />
-                    </Button>
-                </SheetTrigger>
-                <SheetContent>
-                    <SheetHeader>
-                        <SheetTitle>User</SheetTitle>
-                    </SheetHeader>
-                    <SheetFooter>
-                        <SheetClose asChild>
-                            <Button variant={'default'}>Close</Button>
-                        </SheetClose>
-                    </SheetFooter>
-                </SheetContent>
-            </Sheet>
+            <BurgerWrapper>
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button
+                            size={"icon"}
+                            variant={'ghost'}
+                            className={cn('group p-5')}
+                        >
+                            <UserRound className={cn('size-8 transition-all duration-300',
+                                'group-hover:stroke-sidebar-primary'
+                            )} />
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent className={cn('min-w-[375px]')}>
+                        <SheetHeader>
+                            <SheetTitle>User</SheetTitle>
+                        </SheetHeader>
+                            <UserAuthManager />
+                        <SheetFooter>
+                            <SheetClose asChild>
+                                <Button variant={'secondary'}>Close</Button>
+                            </SheetClose>
+                        </SheetFooter>
+                    </SheetContent>
+                </Sheet>
 
-            <Link to={'/'}>
-                <MapPin className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
-            </Link>
-            <Link to={'/'}>
-                <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
-            </Link>
+                <Link to={'/'}>
+                    <MapPin className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
+                </Link>
+                <Link to={'/'}>
+                    <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
+                </Link>
+            </BurgerWrapper>
         </header>
     );
 }
 
-    export
+export
 {
     Header
 }
