@@ -1,14 +1,15 @@
-import {createRootRoute, Link, Outlet} from "@tanstack/react-router";
+import {createRootRoute, Outlet} from "@tanstack/react-router";
 import {TanStackRouterDevtools} from "@tanstack/router-devtools";
 import {ThemeProvider} from "@/components/themeProvider.tsx";
+import {Header} from "@/widgets/Header.tsx";
 
 export const Route = createRootRoute({
     component: () =>
         <ThemeProvider>
-            <Link to={'/'}>Home</Link>
-            <Link to={'/about'}>About</Link>
-            root
-            <Outlet />
+            <Header/>
+            <main>
+                <Outlet />
+            </main>
             <TanStackRouterDevtools />
         </ThemeProvider>
 
