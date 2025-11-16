@@ -1,29 +1,20 @@
 import {cn} from "@/lib/utils.ts";
-import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
+import {useGetMe} from "@/hooks/useUserService.ts";
 
 function HomePage() {
-    const result = useQuery({
-        queryKey: ['users'],
-        queryFn: () => axios.get(import.meta.env.VITE_API_URL + '/categories', {
-            params: {
-                page: 1,
-                limit: 10
-            }
-        })
-    })
+    const {isPending, error, data} = useGetMe()
 
-    if (result.isPending) {
+    if (isPending) {
         return <div>Загрузка...</div>
     }
 
-    if (result.error) {
-        console.log(result.error)
+    if (error) {
+        console.log(error)
         return <div>Ошибка</div>
     }
 
-    if(result.data){
-        console.log(result.data.data)
+    if(data){
+        console.log(data.data)
     }
 
     return (
