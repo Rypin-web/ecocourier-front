@@ -1,25 +1,29 @@
 import {cn} from "@/lib/utils.ts";
-import {useGetMe} from "@/hooks/useUserService.ts";
+import {useLogin} from "@/hooks/useUserService.ts";
+import {Button} from "@/components/ui/button.tsx";
+import {useUserContext} from "@/shared/providers/userProvider.tsx";
 
 function HomePage() {
-    const {isPending, error, data} = useGetMe()
+    const userLogin = useLogin()
+    const userContext = useUserContext()
 
-    if (isPending) {
-        return <div>Загрузка...</div>
+    if(userLogin.data && userContext) {
+        userContext.setUser(userLogin.data.data.data.user)
     }
 
-    if (error) {
-        console.log(error)
-        return <div>Ошибка</div>
-    }
-
-    if(data){
-        console.log(data.data)
+    if(userContext?.user) {
+        console.log(userContext.user)
     }
 
     return (
         <div className={cn('flex container p-5')}>
             qweqweqwe
+            <Button onClick={() => userLogin.mutate({
+                email: 'marlin@gmail.com',
+                password: 'marlin1234'
+            })}>
+                ioquwioeqw
+            </Button>
         </div>
     );
 }
