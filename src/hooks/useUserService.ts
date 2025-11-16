@@ -1,35 +1,29 @@
 import {useMutation, useQuery} from "@tanstack/react-query";
-import {userService} from "@/entity/userService.ts";
 import type {
     TUserGetMeResponseData,
     TUserLoginRequiredData,
     TUserLoginResponseData,
     TUserRegisterRequiredData
 } from "@/shared/types/apiUserServices.t.ts";
+import {userServiceGetMe, userServiceLogin, userServiceRegister} from "@/entity/userService.ts";
 
 export function useGetMe () {
-    const {getMe} = userService()
-
     return useQuery({
-        queryKey: [getMe.key],
-        queryFn: async () => await getMe.queryFn<TUserGetMeResponseData>()
+        queryKey: [userServiceGetMe.key],
+        queryFn: async () => await userServiceGetMe.queryFn<TUserGetMeResponseData>()
     })
 }
 
-export function useLogin (data: TUserLoginRequiredData) {
-    const {login} = userService()
-
+export function useLogin () {
     return useMutation({
-        mutationKey: [login.key],
-        mutationFn: async () => await login.queryFn<TUserLoginResponseData>(data)
+        mutationKey: [userServiceLogin.key],
+        mutationFn: async (data: TUserLoginRequiredData) => await userServiceLogin.queryFn<TUserLoginResponseData>(data)
     })
 }
 
-export function useRegister (data: TUserRegisterRequiredData) {
-    const {register} = userService()
-
+export function useRegister () {
     return useMutation({
-        mutationKey: [register.key],
-        mutationFn: async () => await register.queryFn<TUserLoginResponseData>(data)
+        mutationKey: [userServiceRegister.key],
+        mutationFn: async (data: TUserRegisterRequiredData) => await userServiceRegister.queryFn<TUserLoginResponseData>(data)
     })
 }
