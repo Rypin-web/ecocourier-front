@@ -24,9 +24,14 @@ type TUserContext = {
     basket: Basket[] | null
     setUser: (data: User | null ) => void
     setBasket: (data: Basket[] ) => void
-} | null
+}
 
-const userContext = createContext<TUserContext>(null)
+const userContext = createContext<TUserContext>({
+    user: null,
+    basket: null,
+    setUser: () => {},
+    setBasket: () => {}
+})
 
 export function UserProvider({children}: {children: React.ReactNode}) {
     const [user, setUser] = useState<User | null>(null)
