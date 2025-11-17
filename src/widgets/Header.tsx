@@ -57,7 +57,9 @@ function Header() {
                             )} />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent className={cn('min-w-[375px]')}>
+                    <SheetContent className={cn(
+                        window.innerWidth < 468 ? `min-w-[100%]` : `min-w-[400px]`
+                    )}>
                         <SheetHeader>
                             <SheetTitle>User</SheetTitle>
                         </SheetHeader>
