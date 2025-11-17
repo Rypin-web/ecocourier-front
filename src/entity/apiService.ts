@@ -2,7 +2,7 @@ import axios, {type InternalAxiosRequestConfig} from "axios";
 import type {TUserRefreshResponseData} from "@/shared/types/apiUserServices.t.ts";
 
 export type TApiDefResponse<T> = {
-    msg:string,
+    msg: string,
     data: T
 }
 export const apiService = axios.create({
@@ -17,12 +17,13 @@ apiService.interceptors.request.use((config) => {
 })
 
 apiService.interceptors.response.use((res) => res, async (err) => {
+
     if (axios.isAxiosError(err)) {
         const originalReq = err.config as InternalAxiosRequestConfig<unknown> & { _retry?: boolean } | undefined
 
-        if(originalReq?.url === '/users/refresh') {
+        if (originalReq?.url === '/users/refresh') {
             localStorage.removeItem('token')
-            window.location.href = '/login'
+            window.location.href = '/'
             return Promise.reject(err)
         }
 
@@ -37,7 +38,7 @@ apiService.interceptors.response.use((res) => res, async (err) => {
                 return apiService(originalReq)
             } catch (e) {
                 localStorage.removeItem('token')
-                window.location.href = '/login'
+                window.location.href = '/'
                 return Promise.reject(e)
             }
         }
