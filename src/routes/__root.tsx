@@ -9,11 +9,11 @@ export const Route = createRootRoute({
     component: () =>
         <ThemeProvider>
             <UserProvider>
-                <Header/>
+                <Toaster position={"bottom-left"} />
+                <Header />
                 <main>
                     <Outlet />
                 </main>
-                <Toaster position={"top-center"} />
             </UserProvider>
             <TanStackRouterDevtools />
         </ThemeProvider>
