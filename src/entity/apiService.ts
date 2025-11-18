@@ -23,7 +23,6 @@ apiService.interceptors.response.use((res) => res, async (err) => {
 
         if (originalReq?.url === '/users/refresh') {
             localStorage.removeItem('token')
-            window.location.href = '/'
             return Promise.reject(err)
         }
 
@@ -38,7 +37,6 @@ apiService.interceptors.response.use((res) => res, async (err) => {
                 return apiService(originalReq)
             } catch (e) {
                 localStorage.removeItem('token')
-                window.location.href = '/'
                 return Promise.reject(e)
             }
         }
