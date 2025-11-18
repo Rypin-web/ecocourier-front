@@ -14,7 +14,7 @@ import {
     SheetTrigger
 } from "@/components/ui/sheet.tsx";
 import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
-import {UserAuthManager} from "@/widgets/UserAuthManager.tsx";
+import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 
 function Header() {
 
