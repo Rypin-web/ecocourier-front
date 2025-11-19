@@ -12,7 +12,6 @@ import {cn} from "@/lib/utils.ts";
 import {Menu} from "lucide-react";
 import * as React from "react";
 
-//TODO: Ссылки на страницы аля "О нас" и прочее дерьмо
 function BurgerWrapper({children}: {children: React.ReactNode}) {
     const isMobile = window.innerWidth < 768
 
