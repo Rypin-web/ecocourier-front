@@ -3,8 +3,8 @@ import type {TUserRefreshResponseData} from "@/shared/types/apiUserServices.t.ts
 
 export type TApiDefResponse<T> = {
     msg: string,
-    data: T
-}
+} & T
+
 export const apiService = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true

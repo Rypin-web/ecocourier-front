@@ -40,5 +40,7 @@ export type TUserRegisterRequiredData = {
 
 
 export type TUserRefreshResponseData = {
-    sessionToken: string
+    data: {
+        sessionToken: string
+    }
 }
