@@ -4,15 +4,18 @@ import {Header} from "@/widgets/Header.tsx";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
 import {Toaster} from "@/components/ui/sonner.tsx";
 import {Outlet} from "@tanstack/react-router";
-import type {TUserGetMeResponseData} from "@/shared/types/apiUserServices.t.ts";
 import {useEffect} from "react";
+import {useGetMe} from "@/hooks/useUserService.ts";
 
-export function Root({user}: { user: TUserGetMeResponseData['user'] | null }) {
+export function Root() {
     const userContext = useUserContext()
-    console.log('@@user data', user)
+    const {data} = useGetMe()
+
     useEffect(() => {
-        if (user) userContext.setUser(user)
-    }, [user])
+        if (data?.data.msg) {
+            userContext.setUser(data.data.user)
+        }
+    }, [data])
 
     return (
         <ThemeProvider>
