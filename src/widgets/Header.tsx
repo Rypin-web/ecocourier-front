@@ -15,11 +15,12 @@ import {
 } from "@/components/ui/sheet.tsx";
 import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
+import {ThemeSelector} from "@/features/ThemeSelector.tsx";
 
 //TODO: Переписать это дерьмо. Локация не нужна и чета нужно придумать с корзиной.
 //TODO: Мб она должна быть в правой части страницы, когда с продуктами. Или чет другое
 //TODO: И еще добавить ссылки на дерьмо типа "О нас"
-function Header() {
+export function Header() {
 
     return (
         <header className={cn('sticky top-0 z-50 w-full px-1 md:px-10 py-3 shadow-sm flex items-center gap-1',
@@ -74,6 +75,7 @@ function Header() {
                         </SheetFooter>
                     </SheetContent>
                 </Sheet>
+                <ThemeSelector />
                 <Link to={'/'}>
                     <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
                 </Link>
@@ -81,9 +83,3 @@ function Header() {
         </header>
     );
 }
-
-export
-{
-    Header
-}
-    ;
