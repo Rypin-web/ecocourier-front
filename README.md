@@ -50,22 +50,22 @@ EcoCourier - это пет-проект интернет-магазина про
 <div class="additional-tech" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 12px;">
   <a href="https://tanstack.com/query/latest" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
     TanStack Query
-  </a>
+  </a><br>
   <a href="https://tanstack.com/router/latest" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
     TanStack Router
-  </a>
+  </a><br>
   <a href="https://tanstack.com/form/latest" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
     TanStack Form
-  </a>
+  </a><br>
   <a href="https://ui.shadcn.com/" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
     shadcn/ui
-  </a>
+  </a><br>
   <a href="https://axios-http.com/" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
     Axios
-  </a>
+  </a><br>
   <a href="https://lucide.dev/" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
     Lucide Icons
-  </a>
+  </a><br>
 </div>
 
 ## 🚀 Запуск проекта
