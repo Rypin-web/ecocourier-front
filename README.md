@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# EcoCourier - Доставка еды на дом и навынос
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**EcoCourier** - веб-приложение для заказа еды с доставкой на дом или самовывозом.
 
-Currently, two official plugins are available:
+## 🚀 О проекте
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+EcoCourier - это пет-проект интернет-магазина продуктов, разработанный с использованием современных веб-технологий. 
+Приложение позволяет пользователям:
 
-## React Compiler
+#### - ✅ <span style="color: #60a5fa">Просматривать каталог товаров</span>
+#### - ✅ <span style="color: #60a5fa">Составлять корзину</span>
+#### - ✅ <span style="color: #60a5fa">Удобно оформлять заказы</span>
+#### - ✅ <span style="color: #60a5fa">Отслеживать статус заказа</span>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Технологии
 
-## Expanding the ESLint configuration
+<div align="left">
+  <a href="https://react.dev/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=react" alt="React" height="40" />
+  </a>
+  <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript" height="40" />
+  </a>
+  <a href="https://vitejs.dev/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=vite" alt="Vite" height="40" />
+  </a>
+  <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" height="40" />
+  </a>
+  <a href="https://tanstack.com/router/latest" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=reactrouter" alt="TanStack Router" height="40" />
+  </a>
+  <a href="https://tanstack.com/query/latest" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=reactquery" alt="TanStack Query" height="40" />
+  </a>
+  <a href="https://ui.shadcn.com/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=shadcnui" alt="shadcn/ui" height="40" />
+  </a>
+  <a href="https://axios-http.com/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=axios" alt="Axios" height="40" />
+  </a>
+  <a href="https://lucide.dev/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=lucide" alt="Lucide Icons" height="40" />
+  </a>
+  <a href="https://zod.dev/" target="_blank" rel="noreferrer">
+    <img src="https://skillicons.dev/icons?i=zod" alt="Zod" height="40" />
+  </a>
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<div class="additional-tech" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 12px;">
+  <a href="https://tanstack.com/query/latest" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
+    TanStack Query
+  </a>
+  <a href="https://tanstack.com/router/latest" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
+    TanStack Router
+  </a>
+  <a href="https://tanstack.com/form/latest" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
+    TanStack Form
+  </a>
+  <a href="https://ui.shadcn.com/" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
+    shadcn/ui
+  </a>
+  <a href="https://axios-http.com/" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
+    Axios
+  </a>
+  <a href="https://lucide.dev/" target="_blank" style="display: inline-flex; align-items: center; padding: 8px 16px; background: #242938; border-radius: 6px; text-decoration: none; color: #60a5fa; font-weight: 500; transition: all 0.2s; border: 1px solid #334155;">
+    Lucide Icons
+  </a>
+</div>
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Запуск проекта
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  <div style="margin-bottom: 24px;">
+    <h3 style="margin: 0 0 12px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+      <span>1. Клонирование репозитория</span>
+    </h3>
+      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>git clone https://github.com/Rypin-web/ecocourier-front.git
+cd ecocourier-front</code></pre>
+  </div>
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  <div style="margin-bottom: 24px;">
+    <h3 style="margin: 0 0 12px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+      <span>2. Установка зависимостей</span>
+    </h3>
+      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>npm install</code></pre>
+  </div>
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  <div style="margin-bottom: 24px;">
+    <h3 style="margin: 0 0 12px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+      <span>3. Запуск сервера разработки</span>
+    </h3>
+      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>npm run dev</code></pre>
+  </div>
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  <div>
+    <h3 style="margin: 0 0 12px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+      <span>4. Открытие приложения</span>
+    </h3>
+    <p style="margin: 0 0 12px 0; color: #cbd5e1;">
+      После успешного запуска откройте в браузере:
+    </p>
+    <a href="http://localhost:5173" target="_blank" style="display: inline-block; background: #0f172a; color: #60a5fa; padding: 10px 16px; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1px solid #334155; transition: all 0.2s;">
+      http://localhost:5173
+    </a>
+    <p style="margin: 12px 0 0 0; color: #94a3b8; font-size: 0.9em;">
+      <small>Порт по умолчанию: 5173 (Vite)</small>
+    </p>
+  </div>
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
