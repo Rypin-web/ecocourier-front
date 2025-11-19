@@ -1,7 +1,7 @@
 import type {TUserLoginRequiredData, TUserRegisterRequiredData} from "@/shared/types/apiUserServices.t.ts";
 import {apiService, type TApiDefResponse} from "@/entity/apiService.ts";
 
-
+//TODO : Расширить сервис
 export const userServiceGetMe = {
     key: 'USER_ME_GET',
     queryFn: <T>() => apiService.get<TApiDefResponse<T>>('/users')

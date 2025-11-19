@@ -6,6 +6,7 @@ import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {UserLogin} from "@/widgets/UserAuth/UserLogin.tsx";
 
+//TODO: Наваять логику, если пользователь авторизован и UI
 function UserAuthManager() {
 
 
@@ -30,6 +31,7 @@ function UserAuthManager() {
                     <CardHeader>
                         <CardTitle>Регистрация</CardTitle>
                     </CardHeader>
+                    {/*//TODO: Переписать на TSF */}
                     <CardContent>
                         <form>
                             <div className={cn('flex flex-col gap-6')}>

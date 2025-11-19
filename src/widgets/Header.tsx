@@ -1,6 +1,6 @@
 import {cn} from "@/lib/utils.ts";
 import {Link} from "@tanstack/react-router";
-import {MapPin, Package2, ShoppingCart, UserRound} from "lucide-react";
+import {Package2, ShoppingCart, UserRound} from "lucide-react";
 import {Item, ItemActions, ItemContent} from "@/components/ui/item.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -16,6 +16,9 @@ import {
 import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 
+//TODO: Переписать это дерьмо. Локация не нужна и чета нужно придумать с корзиной.
+//TODO: Мб она должна быть в правой части страницы, когда с продуктами. Или чет другое
+//TODO: И еще добавить ссылки на дерьмо типа "О нас"
 function Header() {
 
     return (
@@ -63,7 +66,7 @@ function Header() {
                         <SheetHeader>
                             <SheetTitle>User</SheetTitle>
                         </SheetHeader>
-                            <UserAuthManager />
+                        <UserAuthManager />
                         <SheetFooter>
                             <SheetClose asChild>
                                 <Button variant={'secondary'}>Close</Button>
@@ -71,10 +74,6 @@ function Header() {
                         </SheetFooter>
                     </SheetContent>
                 </Sheet>
-
-                <Link to={'/'}>
-                    <MapPin className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
-                </Link>
                 <Link to={'/'}>
                     <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
                 </Link>

@@ -3,6 +3,8 @@ export type TUserLoginRequiredData = {
     password: string
 }
 
+//TODO: Дописать для остальных сервисов
+
 export type TUserGetMeResponseData = {
     user:{
         id: string

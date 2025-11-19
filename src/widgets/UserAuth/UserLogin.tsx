@@ -15,7 +15,7 @@ function UserLogin() {
         },
         validators: {
             onChange: z.object({
-                email: z.string().regex(z.regexes.email).min(6).max(128),
+                email: z.string().regex(z.regexes.email, 'Неверный email').min(6).max(128),
                 password: z.string().min(6).max(128)
             })
         },
@@ -31,7 +31,8 @@ function UserLogin() {
         }
 
         if (data) {
-            userContext.setUser(data.data.data.user)
+            userContext.setUser(data.data.user)
+            localStorage.setItem('token', data.data.sessionToken)
             toast.success('Успешно авторизован')
         }
     }, [error, data])
