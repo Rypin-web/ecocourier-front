@@ -16,6 +16,7 @@ import {
 import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 import {ThemeSelector} from "@/features/ThemeSelector.tsx";
+import {Navigation} from "@/shared/ui/Navigation.tsx";
 
 //TODO: Переписать это дерьмо. Локация не нужна и чета нужно придумать с корзиной.
 //TODO: Мб она должна быть в правой части страницы, когда с продуктами. Или чет другое
@@ -49,36 +50,39 @@ export function Header() {
                 </ItemContent>
             </Item>
             <BurgerWrapper>
-                <Sheet>
-                    <SheetTrigger asChild>
-                        <Button
-                            size={"icon"}
-                            variant={'ghost'}
-                            className={cn('group p-5')}
-                        >
-                            <UserRound className={cn('size-8 transition-all duration-300',
-                                'group-hover:stroke-sidebar-primary'
-                            )} />
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent className={cn(
-                        window.innerWidth < 468 ? `min-w-[100%]` : `min-w-[400px]`
-                    )}>
-                        <SheetHeader>
-                            <SheetTitle>User</SheetTitle>
-                        </SheetHeader>
-                        <UserAuthManager />
-                        <SheetFooter>
-                            <SheetClose asChild>
-                                <Button variant={'secondary'}>Close</Button>
-                            </SheetClose>
-                        </SheetFooter>
-                    </SheetContent>
-                </Sheet>
-                <ThemeSelector />
-                <Link to={'/'}>
-                    <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
-                </Link>
+                <Navigation />
+                <div className={cn('flex flex-row justify-center items-center md:gap-5 lg:gap-15')}>
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <Button
+                                size={"icon"}
+                                variant={'ghost'}
+                                className={cn('group p-5')}
+                            >
+                                <UserRound className={cn('size-8 transition-all duration-300',
+                                    'group-hover:stroke-sidebar-primary'
+                                )} />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent className={cn(
+                            window.innerWidth < 468 ? `min-w-[100%]` : `min-w-[400px]`
+                        )}>
+                            <SheetHeader>
+                                <SheetTitle>User</SheetTitle>
+                            </SheetHeader>
+                            <UserAuthManager />
+                            <SheetFooter>
+                                <SheetClose asChild>
+                                    <Button variant={'secondary'}>Close</Button>
+                                </SheetClose>
+                            </SheetFooter>
+                        </SheetContent>
+                    </Sheet>
+                    <ThemeSelector />
+                    <Link to={'/'}>
+                        <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
+                    </Link>
+                </div>
             </BurgerWrapper>
         </header>
     );

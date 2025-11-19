@@ -13,7 +13,7 @@ import {Menu} from "lucide-react";
 import * as React from "react";
 
 function BurgerWrapper({children}: {children: React.ReactNode}) {
-    const isMobile = window.innerWidth < 768
+    const isMobile = window.innerWidth < 937
 
     return (
         <>
@@ -34,7 +34,7 @@ function BurgerWrapper({children}: {children: React.ReactNode}) {
                         <SheetHeader>
                             <SheetTitle>Menu</SheetTitle>
                         </SheetHeader>
-                        <div className={cn('flex flex-row flex-wrap justify-center items-center gap-15')}>
+                        <div className={cn('flex flex-col flex-wrap justify-center items-center gap-15')}>
                             {children}
                         </div>
                         <SheetFooter>
