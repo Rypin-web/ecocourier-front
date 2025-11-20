@@ -6,24 +6,31 @@ import type {
     TUserRegisterRequiredData
 } from "@/shared/types/apiUserServices.t.ts";
 import {userServiceGetMe, userServiceLogin, userServiceRegister} from "@/entity/userService.ts";
+import type {AxiosRequestConfig} from "axios";
 
-export function useGetMe () {
+export function useGetMe(params?: AxiosRequestConfig['params']) {
     return useQuery({
         queryKey: [userServiceGetMe.key],
-        queryFn: async () => await userServiceGetMe.queryFn<TUserGetMeResponseData>()
+        queryFn: async () =>
+            await userServiceGetMe.queryFn<TUserGetMeResponseData>(params)
     })
 }
 
-export function useLogin () {
+export function useLogin() {
     return useMutation({
         mutationKey: [userServiceLogin.key],
-        mutationFn: async (data: TUserLoginRequiredData) => await userServiceLogin.queryFn<TUserLoginResponseData>(data)
+        mutationFn: async ({data, params}: { data: TUserLoginRequiredData, params?: AxiosRequestConfig['params'] }) =>
+            await userServiceLogin.queryFn<TUserLoginResponseData>(data, params)
     })
 }
 
-export function useRegister () {
+export function useRegister() {
     return useMutation({
         mutationKey: [userServiceRegister.key],
-        mutationFn: async (data: TUserRegisterRequiredData) => await userServiceRegister.queryFn<TUserLoginResponseData>(data)
+        mutationFn: async ({data, params}: {
+            data: TUserRegisterRequiredData,
+            params?: AxiosRequestConfig['params']
+        }) =>
+            await userServiceRegister.queryFn<TUserLoginResponseData>(data, params)
     })
 }

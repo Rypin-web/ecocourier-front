@@ -20,7 +20,7 @@ function UserLogin() {
             })
         },
         onSubmit: ({value}) => {
-            mutate(value)
+            mutate({data: value})
         }
     })
 
