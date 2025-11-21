@@ -8,9 +8,9 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {cn} from "@/lib/utils.ts";
+import {cn} from "@/shared/utils/cn.ts";
 import {Palette} from "lucide-react";
-import {useTheme} from "@/components/themeProvider.tsx";
+import {useTheme} from "@/shared/ui/themeProvider.tsx";
 
 function ThemeSelector() {
     const {setTheme} = useTheme()

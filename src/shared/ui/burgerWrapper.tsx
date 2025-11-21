@@ -8,7 +8,7 @@ import {
     SheetTrigger
 } from "@/components/ui/sheet.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {cn} from "@/lib/utils.ts";
+import {cn} from "@/shared/utils/cn.ts";
 import {Menu} from "lucide-react";
 import * as React from "react";
 

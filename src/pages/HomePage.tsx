@@ -1,4 +1,4 @@
-import {cn} from "@/lib/utils.ts";
+import {cn} from "@/shared/utils/cn.ts";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
 
 function HomePage() {

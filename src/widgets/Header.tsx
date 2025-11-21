@@ -1,4 +1,4 @@
-import {cn} from "@/lib/utils.ts";
+import {cn} from "@/shared/utils/cn.ts";
 import {Link} from "@tanstack/react-router";
 import {Package2, ShoppingCart, UserRound} from "lucide-react";
 import {Item, ItemActions, ItemContent} from "@/components/ui/item.tsx";
@@ -16,7 +16,7 @@ import {
 import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 import {ThemeSelector} from "@/features/ThemeSelector.tsx";
-import {Navigation} from "@/shared/ui/Navigation.tsx";
+import {Navigation} from "@/widgets/Navigation.tsx";
 
 //TODO: Переписать это дерьмо. Локация не нужна и чета нужно придумать с корзиной.
 //TODO: Мб она должна быть в правой части страницы, когда с продуктами. Или чет другое

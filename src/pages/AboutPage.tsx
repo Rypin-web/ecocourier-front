@@ -1,5 +1,5 @@
-import {useTheme} from "@/components/themeProvider.tsx";
-import {cn} from "@/lib/utils.ts";
+import {useTheme} from "@/shared/ui/themeProvider.tsx";
+import {cn} from "@/shared/utils/cn.ts";
 import {Button} from "@/components/ui/button.tsx";
 
 function AboutPage() {
