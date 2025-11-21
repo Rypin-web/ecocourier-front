@@ -1,7 +1,7 @@
 import {Item, ItemContent} from "@/components/ui/item.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Link} from "@tanstack/react-router";
-import {cn} from "@/lib/utils.ts";
+import {cn} from "@/shared/utils/cn.ts";
 
 function Navigation() {
     return (
