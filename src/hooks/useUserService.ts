@@ -3,7 +3,7 @@ import type {
     TUserGetMeResponseData,
     TUserLoginRequiredData,
     TUserLoginResponseData,
-    TUserRegisterRequiredData
+    TUserRegisterRequiredData, TUserRegisterResponseData
 } from "@/shared/types/apiUserServices.t.ts";
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
@@ -31,6 +31,6 @@ export function useRegister() {
             data: TUserRegisterRequiredData,
             params?: AxiosRequestConfig['params']
         }) =>
-            await apiService.post('/users/register', data, {params: params})
+            await apiService.post<TApiDefResponse<TUserRegisterResponseData>>('/users/register', data, {params: params})
     })
 }
