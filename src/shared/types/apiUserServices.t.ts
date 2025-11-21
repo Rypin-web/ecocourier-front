@@ -6,25 +6,25 @@ export type TUserLoginRequiredData = {
 //TODO: Дописать для остальных сервисов
 
 export type TUserGetMeResponseData = {
-    user:{
+    user: {
         id: string
         first_name: string
         last_name: string
         phone: string
         email: string
-        role:string
+        role: string
         createdAt: string
         updatedAt: string
     }
 }
 
 export type TUserLoginResponseData = {
-    user:{
+    user: {
         id: string
         first_name: string
         last_name: string
         phone: string
-        role:string
+        role: string
         email: string
         createdAt: string
         updatedAt: string
@@ -32,11 +32,26 @@ export type TUserLoginResponseData = {
     sessionToken: string
 }
 
+export type TUserRegisterResponseData = {
+    data: {
+        user: {
+            id: string
+            first_name: string
+            last_name: string
+            phone: string
+            role: string
+            email: string
+            createdAt: string
+            updatedAt: string
+        }
+    }
+}
+
 export type TUserRegisterRequiredData = {
     email: string
     password: string
     first_name: string
-    last_name: string
+    last_name?: string
     phone: string
 }
 
