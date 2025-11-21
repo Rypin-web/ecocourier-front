@@ -25,16 +25,14 @@ function UserLogin() {
     })
 
     useEffect(() => {
-        if (error) {
-            console.log('@@@', error)
-            toast.error(error.message)
-        }
-
+        if (error) toast.error(error.message)
         if (data) {
             userContext.setUser(data.data.user)
             localStorage.setItem('token', data.data.sessionToken)
             toast.success('Успешно авторизован')
         }
+        form.setFieldValue('email', '')
+        form.setFieldValue('password', '')
     }, [error, data])
 
     return (
