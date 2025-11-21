@@ -1,10 +1,8 @@
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.tsx";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {cn} from "@/shared/utils/cn.ts";
-import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/input.tsx";
-import {Button} from "@/components/ui/button.tsx";
 import {UserLogin} from "@/widgets/UserAuth/UserLogin.tsx";
+import {UserRegister} from "@/widgets/UserAuth/UserRegister.tsx";
 
 //TODO: Наваять логику, если пользователь авторизован и UI
 function UserAuthManager() {
@@ -33,44 +31,8 @@ function UserAuthManager() {
                     </CardHeader>
                     {/*//TODO: Переписать на TSF */}
                     <CardContent>
-                        <form>
-                            <div className={cn('flex flex-col gap-6')}>
-                                <div className={cn('grid gap-2')}>
-                                    <Label htmlFor={'firstName'}>
-                                        Имя
-                                    </Label>
-                                    <Input type={"text"} placeholder={'Имя...'} id={'firstName'} required />
-                                </div>
-                                <div className={cn('grid gap-2')}>
-                                    <Label htmlFor={'lastName'}>
-                                        Фамилия
-                                    </Label>
-                                    <Input type={"text"} placeholder={'Фамилия...'} id={'lastName'} required />
-                                </div>
-                                <div className={cn('grid gap-2')}>
-                                    <Label htmlFor={'phone'}>
-                                        Номер
-                                    </Label>
-                                    <Input type={"text"} placeholder={'Номер...'} id={'phone'} required />
-                                </div>
-                                <div className={cn('grid gap-2')}>
-                                    <Label htmlFor={'email'}>
-                                        Email
-                                    </Label>
-                                    <Input type={"email"} placeholder={'Email...'} id={'email'} required />
-                                </div>
-                                <div className={cn('grid gap-2')}>
-                                    <Label htmlFor={'password'}>
-                                        Пароль
-                                    </Label>
-                                    <Input type={"password"} placeholder={'Пароль...'} id={'password'} required />
-                                </div>
-                            </div>
-                        </form>
+                        <UserRegister />
                     </CardContent>
-                    <CardFooter>
-                        <Button>Зарегистрироваться</Button>
-                    </CardFooter>
                 </Card>
             </TabsContent>
         </Tabs>
