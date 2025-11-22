@@ -3,7 +3,8 @@ import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Link} from "@tanstack/react-router";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
-import {ItemMedia} from "@/components/ui/item.tsx";
+
+const apiUrl = import.meta.env.VITE_API_URL + '/uploads/'
 
 function HomePage() {
     const {user, toggleOpen} = useUserContext()
@@ -54,7 +55,7 @@ function HomePage() {
                 <div className='w-full lg:w-1/2 mt-0 lg:mt-0 order-1 lg:order-none'>
                     <div className='relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-2xl overflow-hidden shadow-xl'>
                         <img 
-                            src='http://localhost:5673/uploads/heroImage/webp' 
+                            src={apiUrl + 'heroSectionImage.webp'}
                             alt='Свежие продукты' 
                             className='w-full h-full object-cover object-center'
                         />
