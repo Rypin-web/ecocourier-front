@@ -10,7 +10,7 @@ import {
 import {Button} from "@/components/ui/button.tsx";
 import {cn} from "@/shared/utils/cn.ts";
 import {Palette} from "lucide-react";
-import {useTheme} from "@/shared/ui/themeProvider.tsx";
+import {useTheme} from "@/shared/providers/themeProvider.tsx";
 
 function ThemeSelector() {
     const {setTheme} = useTheme()
