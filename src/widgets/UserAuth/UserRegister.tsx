@@ -1,5 +1,5 @@
-import {useAppForm} from "@/hooks/useAppForm.ts";
-import {useRegister} from "@/hooks/useUserService.ts";
+import {useAppForm} from "@/shared/hooks/useAppForm.ts";
+import {useRegister} from "@/shared/hooks/useUserService.ts";
 import z from "zod";
 import {useEffect} from "react";
 import {toast} from "sonner";

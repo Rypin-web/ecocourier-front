@@ -29,7 +29,6 @@ function UserAuthManager() {
                     <CardHeader>
                         <CardTitle>Регистрация</CardTitle>
                     </CardHeader>
-                    {/*//TODO: Переписать на TSF */}
                     <CardContent>
                         <UserRegister />
                     </CardContent>

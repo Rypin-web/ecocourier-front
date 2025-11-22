@@ -5,7 +5,7 @@ import {useUserContext} from "@/shared/providers/userProvider.tsx";
 import {Toaster} from "@/components/ui/sonner.tsx";
 import {Outlet} from "@tanstack/react-router";
 import {useEffect} from "react";
-import {useGetMe} from "@/hooks/useUserService.ts";
+import {useGetMe} from "@/shared/hooks/useUserService.ts";
 
 export function Root() {
     const userContext = useUserContext()
