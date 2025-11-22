@@ -17,11 +17,13 @@ import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 import {ThemeSelector} from "@/features/ThemeSelector.tsx";
 import {Navigation} from "@/widgets/Navigation.tsx";
+import {useUserContext} from "@/shared/providers/userProvider.tsx";
 
 //TODO: Переписать это дерьмо. Локация не нужна и чета нужно придумать с корзиной.
 //TODO: Мб она должна быть в правой части страницы, когда с продуктами. Или чет другое
 //TODO: И еще добавить ссылки на дерьмо типа "О нас"
 export function Header() {
+    const {isOpen, toggleOpen} = useUserContext()
 
     return (
         <header className={cn('sticky top-0 z-50 w-full px-1 md:px-10 py-3 shadow-sm flex items-center gap-1',
@@ -52,12 +54,13 @@ export function Header() {
             <BurgerWrapper>
                 <Navigation />
                 <div className={cn('flex flex-row justify-center items-center md:gap-5 lg:gap-15')}>
-                    <Sheet>
+                    <Sheet open={isOpen}>
                         <SheetTrigger asChild>
                             <Button
                                 size={"icon"}
                                 variant={'ghost'}
                                 className={cn('group p-5')}
+                                onClick={toggleOpen}
                             >
                                 <UserRound className={cn('size-8 transition-all duration-300',
                                     'group-hover:stroke-sidebar-primary'
@@ -73,7 +76,7 @@ export function Header() {
                             <UserAuthManager />
                             <SheetFooter>
                                 <SheetClose asChild>
-                                    <Button variant={'secondary'}>Close</Button>
+                                    <Button variant={'secondary'} onClick={toggleOpen}>Close</Button>
                                 </SheetClose>
                             </SheetFooter>
                         </SheetContent>
