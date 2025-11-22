@@ -26,7 +26,7 @@ export function Header() {
     const {isOpen, toggleOpen} = useUserContext()
 
     return (
-        <header className={cn('sticky top-0 z-50 w-full px-1 md:px-10 py-3 shadow-sm flex items-center gap-1',
+        <header className={cn('sticky top-0 z-50 w-full bg-background px-1 md:px-10 py-3 shadow-sm flex items-center gap-1',
             ' md:gap-10')}>
             <Link to={'/'}>
                 <Package2 className={cn('size-10 stroke-sidebar-primary hover:stroke-primary transition-colors')} />
