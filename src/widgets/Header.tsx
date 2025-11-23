@@ -1,6 +1,6 @@
 import {cn} from "@/shared/utils/cn.ts";
 import {Link} from "@tanstack/react-router";
-import {Package2, ShoppingCart, UserRound} from "lucide-react";
+import {Package2, UserRound} from "lucide-react";
 import {Item, ItemActions, ItemContent} from "@/components/ui/item.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -19,14 +19,12 @@ import {ThemeSelector} from "@/features/ThemeSelector.tsx";
 import {Navigation} from "@/widgets/Navigation.tsx";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
 
-//TODO: Переписать это дерьмо. Локация не нужна и чета нужно придумать с корзиной.
-//TODO: Мб она должна быть в правой части страницы, когда с продуктами. Или чет другое
-//TODO: И еще добавить ссылки на дерьмо типа "О нас"
 export function Header() {
     const {isOpen, toggleOpen} = useUserContext()
 
     return (
-        <header className={cn('sticky top-0 z-50 w-full bg-background px-1 md:px-10 py-3 shadow-sm flex items-center gap-1',
+        <header className={cn('sticky top-0 z-50 w-full bg-background px-1 md:px-10 py-3 shadow-sm flex ' +
+            'items-center gap-1 border-b-1 border-white/20',
             ' md:gap-10')}>
             <Link to={'/'}>
                 <Package2 className={cn('size-10 stroke-sidebar-primary hover:stroke-primary transition-colors')} />
@@ -53,9 +51,9 @@ export function Header() {
             </Item>
             <BurgerWrapper>
                 <Navigation />
-                <div className={cn('flex flex-row justify-center items-center md:gap-5 lg:gap-15')}>
-                    <Sheet open={isOpen}>
-                        <SheetTrigger asChild>
+                <div className={cn('flex flex-row justify-center items-center md:gap-5 lg:gap-7')}>
+                    <Sheet open={isOpen} onOpenChange={toggleOpen}>
+                        <SheetTrigger>
                             <Button
                                 size={"icon"}
                                 variant={'ghost'}
@@ -68,7 +66,8 @@ export function Header() {
                             </Button>
                         </SheetTrigger>
                         <SheetContent className={cn(
-                            window.innerWidth < 468 ? `min-w-[100%]` : `min-w-[400px]`
+                            window.innerWidth < 568 ? `min-w-[100%]` : `min-w-[400px]`,
+                            'overflow-y-auto'
                         )}>
                             <SheetHeader>
                                 <SheetTitle>User</SheetTitle>
@@ -82,9 +81,6 @@ export function Header() {
                         </SheetContent>
                     </Sheet>
                     <ThemeSelector />
-                    <Link to={'/'}>
-                        <ShoppingCart className={cn('size-8 hover:stroke-sidebar-primary transition-colors')} />
-                    </Link>
                 </div>
             </BurgerWrapper>
         </header>
