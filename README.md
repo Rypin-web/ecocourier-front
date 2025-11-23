@@ -4,12 +4,15 @@
 
 ## 🔥 О проекте
 
-EcoCourier - это пет-проект интернет-магазина продуктов, разработанный с использованием современных веб-технологий. 
+EcoCourier - это пет-проект интернет-магазина продуктов, разработанный с использованием современных веб-технологий.
 Приложение позволяет пользователям:
 
 #### - ✅ <span style="color: #60a5fa">Просматривать каталог товаров</span>
+
 #### - ✅ <span style="color: #60a5fa">Составлять корзину</span>
+
 #### - ✅ <span style="color: #60a5fa">Удобно оформлять заказы</span>
+
 #### - ✅ <span style="color: #60a5fa">Отслеживать статус заказа</span>
 
 ## 🛠 Технологии
@@ -82,14 +85,18 @@ cd ecocourier-front</code></pre>
     <h3 style="margin: 0 0 12px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
       <span>2. Установка зависимостей</span>
     </h3>
-      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>npm install</code></pre>
+      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>pnpm install
+or
+npm install</code></pre>
   </div>
 
   <div style="margin-bottom: 24px;">
     <h3 style="margin: 0 0 12px 0; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
       <span>3. Запуск сервера разработки</span>
     </h3>
-      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>npm run dev</code></pre>
+      <pre style="margin: 0; font-family: 'JetBrains Mono', monospace; color: #f8fafc;"><code>pnpm dev
+or
+npm run dev</code></pre>
   </div>
 
   <div>
