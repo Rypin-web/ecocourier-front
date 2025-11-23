@@ -6,7 +6,7 @@ import {useEffect} from "react";
 import {toast} from "sonner";
 
 function UserLogin() {
-    const userContext = useUserContext()
+    const {setUser} = useUserContext()
     const {mutate, isPending, data, error} = useLogin()
     const form = useAppForm({
         defaultValues: {
@@ -27,19 +27,19 @@ function UserLogin() {
     useEffect(() => {
         if (error) toast.error(error.message)
         if (data) {
-            userContext.setUser(data.data.user)
-            localStorage.setItem('token', data.data.sessionToken)
+            setUser(data.data.data.user)
+            localStorage.setItem('token', data.data.data.sessionToken)
             toast.success('Успешно авторизован')
+            form.setFieldValue('email', '')
+            form.setFieldValue('password', '')
         }
-        form.setFieldValue('email', '')
-        form.setFieldValue('password', '')
     }, [error, data])
 
     return (
         <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
                 e.preventDefault()
-                form.handleSubmit()
+                await form.handleSubmit()
             }}
         >
             <form.AppField

@@ -19,17 +19,19 @@ export type TUserGetMeResponseData = {
 }
 
 export type TUserLoginResponseData = {
-    user: {
-        id: string
-        first_name: string
-        last_name: string
-        phone: string
-        role: string
-        email: string
-        createdAt: string
-        updatedAt: string
+    data: {
+        user: {
+            id: string
+            first_name: string
+            last_name: string
+            phone: string
+            role: string
+            email: string
+            createdAt: string
+            updatedAt: string
+        }
+        sessionToken: string
     }
-    sessionToken: string
 }
 
 export type TUserRegisterResponseData = {

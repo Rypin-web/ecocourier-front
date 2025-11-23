@@ -15,8 +15,8 @@ function User() {
     const navigate = useNavigate()
     const [emulateUpdateUserData, setEmulateUpdateUserData] = useState(false)
 
-    useEffect(()=> {
-        if(isSuccess) {
+    useEffect(() => {
+        if (isSuccess) {
             setUser(null)
             setBasket([])
             localStorage.removeItem('token')
@@ -28,30 +28,25 @@ function User() {
         <>
             <SheetHeader>
                 <SheetTitle>
-                    {user?.first_name
-                        ? `(${user.role === 'courier' ? 'Курьер' : 'Клиент'})`
-                        : 'Авторизация'
-                    }
+                    {user?.email && `(${user.role === 'courier' ? 'Курьер' : 'Клиент'})`}
+                    {!user?.email && 'Авторизация'}
                 </SheetTitle>
             </SheetHeader>
-            {
-                user?.first_name
-                    ? <Item>
-                        <ItemContent className={cn('flex-col flex gap-3 text-lg')}>
-                            <h2>{user.first_name}</h2>
-                            <h2>{user.last_name}</h2>
-                            <h2>Почта: {user.email}</h2>
-                            <h2 className={cn('mb-5')}>Телефон: {user.phone}</h2>
-                            <Button disabled={emulateUpdateUserData} onClick={() => setEmulateUpdateUserData(true)}>
-                                Изменить {emulateUpdateUserData && <Spinner />}
-                            </Button>
-                            <Button variant={"secondary"} disabled={isPending} onClick={() => mutate()}>
-                                Выйти
-                            </Button>
-                        </ItemContent>
-                    </Item>
-                    : <UserAuthManager />
-            }
+            {user?.email && <Item>
+              <ItemContent className={cn('flex-col flex gap-3 text-lg')}>
+                <h2>{user.first_name}</h2>
+                <h2>{user.last_name}</h2>
+                <h2>Почта: {user.email}</h2>
+                <h2 className={cn('mb-5')}>Телефон: {user.phone}</h2>
+                <Button disabled={emulateUpdateUserData} onClick={() => setEmulateUpdateUserData(true)}>
+                  Изменить {emulateUpdateUserData && <Spinner />}
+                </Button>
+                <Button variant={"secondary"} disabled={isPending} onClick={() => mutate()}>
+                  Выйти
+                </Button>
+              </ItemContent>
+            </Item>}
+            {!user?.email && <UserAuthManager />}
         </>
     );
 }
