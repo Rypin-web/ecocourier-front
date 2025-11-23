@@ -25,7 +25,7 @@ function UserRegister() {
             password: '',
         } as FormDefValues,
         validators: {
-            onChange: schema
+            onSubmit: schema
         },
         onSubmit: ({value}) => {
             mutate({data: value})

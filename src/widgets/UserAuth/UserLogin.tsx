@@ -14,7 +14,7 @@ function UserLogin() {
             password: ''
         },
         validators: {
-            onChange: z.object({
+            onSubmit: z.object({
                 email: z.string().regex(z.regexes.email, 'Неверный email').min(6).max(128),
                 password: z.string().min(6).max(128)
             })
