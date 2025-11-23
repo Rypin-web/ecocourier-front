@@ -34,3 +34,11 @@ export function useRegister() {
             await apiService.post<TApiDefResponse<TUserRegisterResponseData>>('/users/register', data, {params: params})
     })
 }
+
+export function useLogout() {
+    return useMutation({
+        mutationKey: ['DELETE_USER_LOGOUT'],
+        mutationFn: async () =>
+            await apiService.delete<TApiDefResponse<null>>('/users/logout')
+    })
+}
