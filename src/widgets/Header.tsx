@@ -4,20 +4,12 @@ import {Package2, UserRound} from "lucide-react";
 import {Item, ItemActions, ItemContent} from "@/components/ui/item.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger
-} from "@/components/ui/sheet.tsx";
+import {Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger} from "@/components/ui/sheet.tsx";
 import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
-import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 import {ThemeSelector} from "@/features/ThemeSelector.tsx";
 import {Navigation} from "@/widgets/Navigation.tsx";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {User} from "@/widgets/UserAuth/User.tsx";
 
 export function Header() {
     const {isOpen, toggleOpen} = useUserContext()
@@ -69,10 +61,7 @@ export function Header() {
                             window.innerWidth < 568 ? `min-w-[100%]` : `min-w-[400px]`,
                             'overflow-y-auto'
                         )}>
-                            <SheetHeader>
-                                <SheetTitle>User</SheetTitle>
-                            </SheetHeader>
-                            <UserAuthManager />
+                            <User />
                             <SheetFooter>
                                 <SheetClose asChild>
                                     <Button variant={'secondary'} onClick={toggleOpen}>Close</Button>
