@@ -12,17 +12,17 @@ function Navigation() {
                     : cn('flex flex-row justify-center')
                 }
             >
-                <Button asChild variant={'link'} >
+                <Button asChild variant={'link'} className={cn('text-chart-2')}>
                     <Link to={'/about'}  className={cn('text-[1.2rem] font-bold')}>
                         О нас
                     </Link>
                 </Button>
-                <Button asChild variant={'link'}>
+                <Button asChild variant={'link'} className={cn('text-chart-2')}>
                     <Link to={'/about'} className={cn('text-[1.2rem] font-bold')}>
                         Партнеры
                     </Link>
                 </Button>
-                <Button asChild variant={'link'}>
+                <Button asChild variant={'link'} className={cn('text-chart-2')}>
                     <Link to={'/about'}  className={cn('text-[1.2rem] font-bold')}>
                         Новости
                     </Link>
