@@ -4,9 +4,25 @@ import {Button} from "@/components/ui/button.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
 import {SheetHeader, SheetTitle} from "@/components/ui/sheet.tsx";
+import {useLogout} from "@/shared/hooks/useUserService.ts";
+import {useEffect, useState} from "react";
+import {useNavigate} from "@tanstack/react-router";
+import {Spinner} from "@/components/ui/spinner.tsx";
 
 function User() {
-    const {user} = useUserContext()
+    const {user, setUser, setBasket} = useUserContext()
+    const {mutate, isPending, isSuccess} = useLogout()
+    const navigate = useNavigate()
+    const [emulateUpdateUserData, setEmulateUpdateUserData] = useState(false)
+
+    useEffect(()=> {
+        if(isSuccess) {
+            setUser(null)
+            setBasket([])
+            localStorage.removeItem('token')
+            navigate({to: '/'})
+        }
+    }, [isPending, isSuccess])
 
     return (
         <>
@@ -26,10 +42,10 @@ function User() {
                             <h2>{user.last_name}</h2>
                             <h2>Почта: {user.email}</h2>
                             <h2 className={cn('mb-5')}>Телефон: {user.phone}</h2>
-                            <Button>
-                                Изменить
+                            <Button disabled={emulateUpdateUserData} onClick={() => setEmulateUpdateUserData(true)}>
+                                Изменить {emulateUpdateUserData && <Spinner />}
                             </Button>
-                            <Button variant={"secondary"}>
+                            <Button variant={"secondary"} disabled={isPending} onClick={() => mutate()}>
                                 Выйти
                             </Button>
                         </ItemContent>
