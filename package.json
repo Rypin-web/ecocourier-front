@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "shadcn": "npx shadcn@latest add "
+    "shadcn": "pnpx shadcn@latest add "
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
