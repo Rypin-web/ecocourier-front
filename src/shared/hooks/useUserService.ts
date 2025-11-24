@@ -3,7 +3,7 @@ import type {
     TUserGetMeResponseData,
     TUserLoginRequiredData,
     TUserLoginResponseData,
-    TUserRegisterRequiredData, TUserRegisterResponseData
+    TUserRegisterRequiredData, TUserRegisterResponseData, TUserUpdateRequiredData, TUserUpdateResponseData
 } from "@/shared/types/apiUserServices.t.ts";
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
@@ -40,5 +40,16 @@ export function useLogout() {
         mutationKey: ['DELETE_USER_LOGOUT'],
         mutationFn: async () =>
             await apiService.delete<TApiDefResponse<null>>('/users/logout')
+    })
+}
+
+export function useUpdateUser () {
+    return useMutation({
+        mutationKey: ['PUT_USER_UPDATE'],
+        mutationFn: async ({data, params}: {
+            data: TUserUpdateRequiredData,
+            params?: AxiosRequestConfig['params']
+        }) =>
+            await apiService.put<TApiDefResponse<TUserUpdateResponseData>>('/users/me', data, {params: params})
     })
 }
