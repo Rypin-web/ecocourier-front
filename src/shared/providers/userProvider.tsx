@@ -40,6 +40,12 @@ const userContext = createContext<TUserContext>({
     }
 })
 
+//Провайдеры же раньше загружаются чем, компоненты и
+//мне впадлу придумывать чет еще, пускай тут будет
+//Если будет много таких констант, то вынесу, хз, может в другой провайдер или просто в объект,
+//на что вайб будет
+export const apiUrl = import.meta.env.VITE_API_URL + '/uploads/'
+
 export function UserProvider({children}: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null)
     const [basket, setBasket] = useState<Basket[]>([])
