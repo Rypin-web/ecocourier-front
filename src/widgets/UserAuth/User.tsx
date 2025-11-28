@@ -38,6 +38,10 @@ function User() {
                 <h2>Почта: {user.email}</h2>
                 <h2 className={cn('mb-5')}>Телефон: {user.phone}</h2>
                 <UserUpdateData />
+                  {user.role === 'admin' &&
+                    <Button variant={'outline'} onClick={() => navigate({to: '/admin'})}>
+                      Администратор
+                    </Button>}
                 <Button variant={"secondary"} disabled={isPending} onClick={() => mutate()}>
                   Выйти
                 </Button>
