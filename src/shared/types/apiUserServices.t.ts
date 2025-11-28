@@ -19,17 +19,19 @@ export type TUserGetMeResponseData = {
 }
 
 export type TUserUpdateResponseData = {
-    user: {
-        id: string
-        role: string
-        first_name: string
-        last_name: string
-        email: string
-        phone: string
-        createdAt: string
-        updatedAt: string
+    data: {
+        user: {
+            id: string
+            role: string
+            first_name: string
+            last_name: string
+            email: string
+            phone: string
+            createdAt: string
+            updatedAt: string
+        }
+        updatedData: TUserUpdateRequiredData
     }
-    updatedData: TUserUpdateRequiredData
 }
 
 export type TUserUpdateRequiredData = {
