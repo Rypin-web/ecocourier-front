@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/dialog.tsx";
 import {useCallback, useEffect, useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
-import {useUserContext} from "@/shared/providers/userProvider.tsx";
 import {useUpdateUser} from "@/shared/hooks/useUserService.ts";
 import {cn} from "@/shared/utils/cn.ts";
 import {useAppForm} from "@/shared/hooks/useAppForm.ts";
 import z from "zod";
 import {toast} from "sonner";
+import {useUserContext} from "@/shared/providers/userProvider.tsx";
 
 const schema = z.object({
     first_name: z.string().min(2).max(128),
@@ -26,8 +26,8 @@ type FormData = z.infer<typeof schema>
 
 function UserUpdateData() {
     const [isOpen, setIsOpen] = useState(false)
-    const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen])
     const {user, setUser} = useUserContext()
+    const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen])
     const {mutate, isPending, data, error} = useUpdateUser()
     const form = useAppForm({
         defaultValues: {
@@ -52,12 +52,9 @@ function UserUpdateData() {
 
         if (data) {
             toast.success('Данные изменены')
-            //TODO: BUG!!! Контекст пользователя не обновляется
-            setUser({...user, ...data.data.user})
-            form.setFieldValue('first_name', '')
-            form.setFieldValue('last_name', '')
-            form.setFieldValue('email', '')
-            form.setFieldValue('phone', '')
+            console.log('@@ user', user)
+            console.log('@@ data', data.data.data.user)
+            setUser(data.data.data.user)
             setIsOpen(false)
         }
     }, [data, error])
@@ -69,7 +66,9 @@ function UserUpdateData() {
                     disabled={isOpen}
                     onClick={toggleOpen}
                     className={cn('flex w-full')}
-                >Изменить</Button>
+                >
+                    Изменить
+                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
@@ -102,8 +101,7 @@ function UserUpdateData() {
                         }
                     />
                     <DialogFooter>
-                        {/*TODO: BUG!!! Кнопка отмены триггерит отпарвку формы */}
-                        <Button variant={"secondary"} onClick={toggleOpen}>Отмена</Button>
+                        <Button type={'button'} variant={"secondary"} onClick={toggleOpen}>Отмена</Button>
                         <form.AppForm>
                             <form.SubmitButton
                                 isPending={isPending}
