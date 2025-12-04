@@ -4,7 +4,7 @@ import { cn } from "@/shared/utils/cn.ts";
 
 function NotFound() {
     return (
-        <section className={cn('min-h-screen flex items-center justify-center bg-background')}>
+        <section className={cn('min-h-[60vh] flex items-center justify-center bg-background')}>
             <div className="container mx-auto px-4 py-16 text-center">
                 <div className="max-w-2xl mx-auto">
                     <div className="text-8xl font-bold text-chart-5 mb-6 animate-bounce">
