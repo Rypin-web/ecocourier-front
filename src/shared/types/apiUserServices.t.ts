@@ -12,7 +12,7 @@ export type TUserGetMeResponseData = {
         last_name: string
         phone: string
         email: string
-        role: string
+        role: 'admin' | 'user' | 'courier'
         createdAt: string
         updatedAt: string
     }
@@ -22,7 +22,7 @@ export type TUserUpdateResponseData = {
     data: {
         user: {
             id: string
-            role: string
+            role: 'admin' | 'user' | 'courier'
             first_name: string
             last_name: string
             email: string
@@ -48,7 +48,7 @@ export type TUserLoginResponseData = {
             first_name: string
             last_name: string
             phone: string
-            role: string
+            role: 'admin' | 'user' | 'courier'
             email: string
             createdAt: string
             updatedAt: string
@@ -64,7 +64,7 @@ export type TUserRegisterResponseData = {
             first_name: string
             last_name: string
             phone: string
-            role: string
+            role: 'admin' | 'user' | 'courier'
             email: string
             createdAt: string
             updatedAt: string
