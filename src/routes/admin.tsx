@@ -1,7 +1,8 @@
 import {createFileRoute} from "@tanstack/react-router";
-import {CheckAdminRole} from "@/pages/Admin.tsx";
+import {Admin} from "@/pages/Admin.tsx";
+import {RequireRole} from "@/shared/utils/requireRole.tsx";
 
 
 export const Route = createFileRoute("/admin")({
-    component: () => <CheckAdminRole />
+    component: () => <RequireRole roles={['admin']}><Admin /></RequireRole>
 })
