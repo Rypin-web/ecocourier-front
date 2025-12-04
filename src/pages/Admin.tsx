@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {AdminNavigation} from "@/widgets/AdminNavigation.tsx";
+import {AdminNavigation} from "@/widgets/AdminNavigation/AdminNavigation.tsx";
 
 function Admin() {
     const [activeModel, setActiveModel] = useState('');
@@ -9,7 +9,7 @@ function Admin() {
     return (
         <>
             <AdminNavigation setActiveModel={setActiveModel} />
-            <div className={'pl-[220px]'}>
+            <div className={'pl-[250px]'}>
                 Admin
             </div>
         </>
