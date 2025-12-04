@@ -7,7 +7,7 @@ type User = {
     last_name: string
     phone: string
     email: string
-    role: string
+    role: 'user' | 'courier' | 'admin'
     createdAt: string
     updatedAt: string
 }
