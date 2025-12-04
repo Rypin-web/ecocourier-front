@@ -1,22 +1,17 @@
-import {Button} from "@/components/ui/button.tsx";
 import {Item, ItemActions, ItemContent, ItemTitle} from "@/components/ui/item.tsx";
 import {ExternalLinkIcon} from "lucide-react";
 import type {ReactNode} from "react";
+import {Link} from "@tanstack/react-router";
 
 interface AdminNavigationItemProps {
     children: ReactNode | string,
     modelName: string
-    setActiveModel: (modelName: string) => void
 }
 
-function AdminNavigationItem({children, modelName, setActiveModel}: AdminNavigationItemProps) {
+function AdminNavigationItem({children, modelName,}: AdminNavigationItemProps) {
     return (
-        <Item asChild variant={'outline'}>
-            <Button
-                className={'flex flex-row w-full h-fit mb-2'}
-                variant={'ghost'}
-                onClick={() => setActiveModel(modelName)}
-            >
+        <Item asChild variant={'outline'} className={'mb-3'}>
+            <Link to={'/admin/' + modelName}>
                 <ItemContent>
                     <ItemTitle className={'text-lg'}>
                         {children}
@@ -25,7 +20,7 @@ function AdminNavigationItem({children, modelName, setActiveModel}: AdminNavigat
                 <ItemActions>
                     <ExternalLinkIcon className={'size-4'} />
                 </ItemActions>
-            </Button>
+            </Link>
         </Item>
     );
 }
