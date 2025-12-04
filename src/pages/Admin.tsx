@@ -1,14 +1,16 @@
-import {useState} from "react";
 import {AdminNavigation} from "@/widgets/AdminNavigation/AdminNavigation.tsx";
+import {Outlet} from "@tanstack/react-router";
+
+//setActiveModel={setActiveModel}
 
 function Admin() {
-    const [activeModel, setActiveModel] = useState('');
+    // const [activeModel, setActiveModel] = useState('');
 
     return (
         <>
-            <AdminNavigation setActiveModel={setActiveModel} />
+            <AdminNavigation />
             <div className={'pl-[250px]'}>
-                {activeModel}
+                <Outlet />
             </div>
         </>
     );
