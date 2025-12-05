@@ -1,3 +1,5 @@
+import type {User} from "@/shared/providers/userProvider.tsx";
+
 export type TUserLoginRequiredData = {
     email: string
     password: string
@@ -6,30 +8,12 @@ export type TUserLoginRequiredData = {
 //TODO: Дописать для остальных сервисов
 
 export type TUserGetMeResponseData = {
-    user: {
-        id: string
-        first_name: string
-        last_name: string
-        phone: string
-        email: string
-        role: 'admin' | 'user' | 'courier'
-        createdAt: string
-        updatedAt: string
-    }
+    user: User
 }
 
 export type TUserUpdateResponseData = {
     data: {
-        user: {
-            id: string
-            role: 'admin' | 'user' | 'courier'
-            first_name: string
-            last_name: string
-            email: string
-            phone: string
-            createdAt: string
-            updatedAt: string
-        }
+        user: User
         updatedData: TUserUpdateRequiredData
     }
 }
@@ -43,32 +27,14 @@ export type TUserUpdateRequiredData = {
 
 export type TUserLoginResponseData = {
     data: {
-        user: {
-            id: string
-            first_name: string
-            last_name: string
-            phone: string
-            role: 'admin' | 'user' | 'courier'
-            email: string
-            createdAt: string
-            updatedAt: string
-        }
+        user: User
         sessionToken: string
     }
 }
 
 export type TUserRegisterResponseData = {
     data: {
-        user: {
-            id: string
-            first_name: string
-            last_name: string
-            phone: string
-            role: 'admin' | 'user' | 'courier'
-            email: string
-            createdAt: string
-            updatedAt: string
-        }
+        user: User
     }
 }
 
@@ -84,5 +50,18 @@ export type TUserRegisterRequiredData = {
 export type TUserRefreshResponseData = {
     data: {
         sessionToken: string
+    }
+}
+
+export type TUserSearchParams = {
+    limit: number
+    page: number
+    sort: 'ASC' | 'DESC'
+}
+
+export type TGetUsersResponseData = {
+    data: {
+        total: number
+        users: User[]
     }
 }
