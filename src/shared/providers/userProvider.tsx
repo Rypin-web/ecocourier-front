@@ -1,7 +1,7 @@
 import * as React from "react";
 import {createContext, useContext, useState} from "react";
 
-type User = {
+export type User = {
     id: string
     first_name: string
     last_name: string
@@ -11,7 +11,7 @@ type User = {
     createdAt: string
     updatedAt: string
 }
-type Basket = {
+export type Basket = {
     id: string
     userId: string
     productId: string
