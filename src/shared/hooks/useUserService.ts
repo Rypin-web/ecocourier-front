@@ -1,9 +1,14 @@
 import {useMutation, useQuery} from "@tanstack/react-query";
 import type {
+    TGetUsersResponseData,
     TUserGetMeResponseData,
     TUserLoginRequiredData,
     TUserLoginResponseData,
-    TUserRegisterRequiredData, TUserRegisterResponseData, TUserUpdateRequiredData, TUserUpdateResponseData
+    TUserRegisterRequiredData,
+    TUserRegisterResponseData,
+    TUserSearchParams,
+    TUserUpdateRequiredData,
+    TUserUpdateResponseData
 } from "@/shared/types/apiUserServices.t.ts";
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
@@ -51,5 +56,14 @@ export function useUpdateUser () {
             params?: AxiosRequestConfig['params']
         }) =>
             await apiService.put<TApiDefResponse<TUserUpdateResponseData>>('/users/me', data, {params: params})
+    })
+}
+
+export function useGetUsers (data: AxiosRequestConfig['params'] & TUserSearchParams) {
+    return useQuery({
+        queryKey: ['GET_USERS', data.limit, data.page, data.sort],
+        queryFn: async () => await apiService.get<TApiDefResponse<TGetUsersResponseData>>('/users/all', {
+            params: data
+        })
     })
 }
