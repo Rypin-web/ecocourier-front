@@ -46,7 +46,7 @@ function Users() {
                             data={e}
                             refetch={refetch}
                         />
-                    )) : new Array(20).fill(0).map(() => (
+                    )) : new Array(searchData.limit).fill(0).map(() => (
                         <TableRow>
                             <TableCell colSpan={8}>
                                 <Skeleton className='h-12 w-full' />
