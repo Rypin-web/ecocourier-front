@@ -1,9 +1,10 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/shared/utils/cn";
+import {Badge} from "@/components/ui/badge";
+import {Button} from "@/components/ui/button";
+import {cn} from "@/shared/utils/cn";
 import {Link} from "@tanstack/react-router";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
 import {apiUrl} from "@/shared/constants/api.ts";
+import {AspectRatio} from "@/components/ui/aspect-ratio.tsx";
 
 function Hero() {
     const {user, toggleOpen} = useUserContext()
@@ -54,11 +55,13 @@ function Hero() {
 
                 <div className='w-full lg:w-1/2 mt-0 lg:mt-0 order-1 lg:order-none'>
                     <div className='relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-2xl overflow-hidden shadow-xl'>
-                        <img
-                            src={apiUrl + 'heroSectionImage.webp'}
-                            alt='Свежие продукты'
-                            className='w-full h-full object-cover object-center'
-                        />
+                        <AspectRatio ratio={1 / 1}>
+                            <img
+                                src={apiUrl + 'heroSectionImage.webp'}
+                                alt={''}
+                                className='w-full h-full rounded-xl border-transparent border-1'
+                            />
+                        </AspectRatio>
                     </div>
                 </div>
             </div>
