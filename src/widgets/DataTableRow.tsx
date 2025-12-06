@@ -37,7 +37,6 @@ function DataTableRow({data, index, mutate, refetch, isPending, isError, isSucce
     const form = useAppForm({
         defaultValues: defaultValues,
         onSubmit: function ({value}) {
-            console.log('submit', this.defaultValues)
             mutate({id: value.id, data: value})
         }
     })

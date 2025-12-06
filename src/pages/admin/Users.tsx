@@ -15,9 +15,6 @@ function Users() {
     const {data, refetch} = useGetUsers(searchData)
     const {mutate, isPending: isPendingMutate, isSuccess, isError} = useUpdateUserById()
 
-
-    console.log(data)
-
     return (
         <div>
             <Table>
