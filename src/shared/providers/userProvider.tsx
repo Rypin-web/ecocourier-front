@@ -1,24 +1,8 @@
 import * as React from "react";
 import {createContext, useContext, useState} from "react";
+import type {Basket, User} from "../types/entities.t";
 
-export type User = {
-    id: string
-    first_name: string
-    last_name: string
-    phone: string
-    email: string
-    role: 'user' | 'courier' | 'admin'
-    createdAt: string
-    updatedAt: string
-}
-export type Basket = {
-    id: string
-    userId: string
-    productId: string
-    quantity: number
-    createdAt: string
-    updatedAt: string
-}
+
 type TUserContext = {
     user: User | null
     basket: Basket[] | null
@@ -40,11 +24,6 @@ const userContext = createContext<TUserContext>({
     }
 })
 
-//Провайдеры же раньше загружаются чем, компоненты и
-//мне впадлу придумывать чет еще, пускай тут будет
-//Если будет много таких констант, то вынесу, хз, может в другой провайдер или просто в объект,
-//на что вайб будет
-export const apiUrl = import.meta.env.VITE_API_URL + '/uploads/'
 
 export function UserProvider({children}: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null)
