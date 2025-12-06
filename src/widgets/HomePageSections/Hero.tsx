@@ -2,7 +2,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/shared/utils/cn";
 import {Link} from "@tanstack/react-router";
-import {apiUrl, useUserContext} from "@/shared/providers/userProvider.tsx";
+import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {apiUrl} from "@/shared/constants/api.ts";
 
 function Hero() {
     const {user, toggleOpen} = useUserContext()
