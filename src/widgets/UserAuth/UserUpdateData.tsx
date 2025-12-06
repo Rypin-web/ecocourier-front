@@ -52,8 +52,6 @@ function UserUpdateData() {
 
         if (data) {
             toast.success('Данные изменены')
-            console.log('@@ user', user)
-            console.log('@@ data', data.data.data.user)
             setUser(data.data.data.user)
             setIsOpen(false)
         }
