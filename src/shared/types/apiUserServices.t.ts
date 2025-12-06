@@ -1,5 +1,5 @@
-import type {User} from "@/shared/providers/userProvider.tsx";
 import type {AxiosRequestConfig} from "axios";
+import type {User, UserRole} from "@/shared/types/entities.t.ts";
 
 export type TUserLoginRequiredData = {
     email: string
@@ -54,11 +54,6 @@ export type TUserRefreshResponseData = {
     }
 }
 
-export type TUserSearchParams = {
-    limit: number
-    page: number
-    sort: 'ASC' | 'DESC'
-}
 
 export type TGetUsersResponseData = {
     data: {
@@ -83,7 +78,7 @@ export type TUpdateUserByIdResponseData = {
 export type useUpdateUserByIdMutationProps = {
     id: string
     data: {
-        role: 'admin' | 'user' | 'courier'
+        role: UserRole
         email: string
         password: string
         first_name: string

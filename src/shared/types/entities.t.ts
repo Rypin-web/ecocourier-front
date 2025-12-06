@@ -1,10 +1,12 @@
+export type UserRole = 'user' | 'courier' | 'admin'
+
 export type User = {
     id: string
     first_name: string
     last_name: string
     phone: string
     email: string
-    role: 'user' | 'courier' | 'admin'
+    role: UserRole
     createdAt: string
     updatedAt: string
 }
