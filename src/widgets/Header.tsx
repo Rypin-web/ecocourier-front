@@ -10,6 +10,7 @@ import {ThemeSelector} from "@/features/ThemeSelector.tsx";
 import {Navigation} from "@/widgets/Navigation.tsx";
 import {useUserContext} from "@/shared/providers/userProvider.tsx";
 import {User} from "@/widgets/UserAuth/User.tsx";
+import {useWindowWidth} from "@/shared/hooks/useWindowWidth.ts";
 
 export function Header() {
     const {isOpen, toggleOpen} = useUserContext()
@@ -58,7 +59,7 @@ export function Header() {
                             </Button>
                         </SheetTrigger>
                         <SheetContent className={cn(
-                            window.innerWidth < 568 ? `min-w-[100%]` : `min-w-[400px]`,
+                            useWindowWidth() < 568 ? `min-w-[100%]` : `min-w-[400px]`,
                             'overflow-y-auto'
                         )}>
                             <User />
