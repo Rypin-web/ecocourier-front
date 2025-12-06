@@ -1,6 +1,7 @@
 import {useMutation, useQuery} from "@tanstack/react-query";
 import type {
     TGetUsersResponseData,
+    TUpdateUserByIdResponseData,
     TUserGetMeResponseData,
     TUserLoginRequiredData,
     TUserLoginResponseData,
@@ -8,7 +9,7 @@ import type {
     TUserRegisterResponseData,
     TUserSearchParams,
     TUserUpdateRequiredData,
-    TUserUpdateResponseData
+    TUserUpdateResponseData, useUpdateUserByIdMutationProps
 } from "@/shared/types/apiUserServices.t.ts";
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
@@ -48,7 +49,7 @@ export function useLogout() {
     })
 }
 
-export function useUpdateUser () {
+export function useUpdateUser() {
     return useMutation({
         mutationKey: ['PUT_USER_UPDATE'],
         mutationFn: async ({data, params}: {
@@ -59,11 +60,26 @@ export function useUpdateUser () {
     })
 }
 
-export function useGetUsers (data: AxiosRequestConfig['params'] & TUserSearchParams) {
+export function useGetUsers(data: AxiosRequestConfig['params'] & TUserSearchParams) {
     return useQuery({
         queryKey: ['GET_USERS', data.limit, data.page, data.sort],
         queryFn: async () => await apiService.get<TApiDefResponse<TGetUsersResponseData>>('/users/all', {
             params: data
         })
+    })
+}
+
+
+
+export function useUpdateUserById() {
+    return useMutation({
+        mutationKey: ['PUT_BYID_USER'],
+        mutationFn: async ({id, data, params}: useUpdateUserByIdMutationProps) => (
+            await apiService.put<TApiDefResponse<TUpdateUserByIdResponseData>>(
+                `/users/${id}/update`,
+                data,
+                {params: params}
+            )
+        )
     })
 }
