@@ -13,6 +13,7 @@ function Users() {
     })
     const {data, isPending, error} = useGetUsers(searchData)
 
+
     console.log(data)
 
     return (
@@ -33,12 +34,15 @@ function Users() {
                 <TableBody>
                     {/*TODO: Обернуть компонент в итем и намутить диалог для изменения данных.
                     TODO Ну туда можно и удаление вставить*/}
-                    {data?.data.data.users.map((e, index) => <DataTableRow index={index} data={e} />)}
+                    {data?.data.data.users.map((e, index) => (
+                        <DataTableRow index={index} data={e} />
+                    ))}
                 </TableBody>
             </Table>
         </div>
     );
 }
+
 //TODO: Не забыть про создание пользователя
 
 export {Users};
