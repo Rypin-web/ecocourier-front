@@ -20,14 +20,8 @@ function Users() {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Индекс</TableHead>
-                        <TableHead>Роль</TableHead>
-                        <TableHead>Имя</TableHead>
-                        <TableHead>Фамилия</TableHead>
-                        <TableHead>Почта</TableHead>
-                        <TableHead>Номер</TableHead>
-                        <TableHead>Создано:</TableHead>
-                        <TableHead>Обновлено:</TableHead>
+                        {['Индекс', 'Роль', 'Имя', 'Фамилия', 'Почта', 'Номер', 'Создано:', 'Обновлено:']
+                            .map((e) => <TableHead>{e}</TableHead>)}
                     </TableRow>
                 </TableHeader>
                 <TableBody>
