@@ -1,8 +1,9 @@
 import {useState} from "react";
 import {useGetUsers, useUpdateUserById} from "@/shared/hooks/useUserService.ts";
-import {Table, TableBody, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {DataTableRow} from "@/widgets/DataTableRow.tsx";
 import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
+import {Skeleton} from "@/components/ui/skeleton.tsx";
 
 
 function Users() {
@@ -35,7 +36,7 @@ function Users() {
                 <TableBody>
                     {/*TODO: Обернуть компонент в итем и намутить диалог для изменения данных.
                     TODO Ну туда можно и удаление вставить*/}
-                    {data?.data.data.users.map((e, index) => (
+                    {data?.status ? data?.data.data.users.map((e, index) => (
                         <DataTableRow
                             mutate={mutate}
                             isSuccess={isSuccess}
@@ -45,6 +46,12 @@ function Users() {
                             data={e}
                             refetch={refetch}
                         />
+                    )) : new Array(20).fill(0).map(() => (
+                        <TableRow>
+                            <TableCell colSpan={8}>
+                                <Skeleton className='h-12 w-full' />
+                            </TableCell>
+                        </TableRow>
                     ))}
                 </TableBody>
             </Table>
