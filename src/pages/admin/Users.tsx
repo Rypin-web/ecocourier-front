@@ -1,8 +1,8 @@
 import {useState} from "react";
-import type {TUserSearchParams} from "@/shared/types/apiUserServices.t.ts";
 import {useGetUsers, useUpdateUserById} from "@/shared/hooks/useUserService.ts";
 import {Table, TableBody, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {DataTableRow} from "@/widgets/DataTableRow.tsx";
+import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
 
 
 function Users() {
