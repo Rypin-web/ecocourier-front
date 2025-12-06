@@ -1,4 +1,5 @@
 import type {User} from "@/shared/providers/userProvider.tsx";
+import type {AxiosRequestConfig} from "axios";
 
 export type TUserLoginRequiredData = {
     email: string
@@ -64,4 +65,30 @@ export type TGetUsersResponseData = {
         total: number
         users: User[]
     }
+}
+
+export type TUpdateUserByIdResponseData = {
+    data: {
+        user: User,
+        updatedData: {
+            email?: string
+            password?: string
+            first_name?: string
+            last_name?: string
+            phone?: string
+        }
+    }
+}
+
+export type useUpdateUserByIdMutationProps = {
+    id: string
+    data: {
+        role: 'admin' | 'user' | 'courier'
+        email: string
+        password: string
+        first_name: string
+        last_name?: string
+        phone: string
+    }
+    params?: AxiosRequestConfig['params']
 }
