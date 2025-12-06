@@ -6,12 +6,12 @@ import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
 
 
 function Users() {
-    const [searchData, setSearchData] = useState<TUserSearchParams>({
+    const [searchData] = useState<TUserSearchParams>({
         limit: 20,
         page: 1,
         sort: "ASC"
     })
-    const {data, isPending, error, refetch} = useGetUsers(searchData)
+    const {data, refetch} = useGetUsers(searchData)
     const {mutate, isPending: isPendingMutate, isSuccess, isError} = useUpdateUserById()
 
 
