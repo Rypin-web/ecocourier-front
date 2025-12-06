@@ -7,12 +7,13 @@ import type {
     TUserLoginResponseData,
     TUserRegisterRequiredData,
     TUserRegisterResponseData,
-    TUserSearchParams,
     TUserUpdateRequiredData,
-    TUserUpdateResponseData, useUpdateUserByIdMutationProps
+    TUserUpdateResponseData,
+    useUpdateUserByIdMutationProps
 } from "@/shared/types/apiUserServices.t.ts";
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
+import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
 
 export function useGetMe(params?: AxiosRequestConfig['params']) {
     return useQuery({
@@ -68,7 +69,6 @@ export function useGetUsers(data: AxiosRequestConfig['params'] & TUserSearchPara
         })
     })
 }
-
 
 
 export function useUpdateUserById() {
