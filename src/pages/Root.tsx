@@ -8,13 +8,11 @@ import {useEffect} from "react";
 import {useGetMe} from "@/shared/hooks/useUserService.ts";
 
 export function Root() {
-    const userContext = useUserContext()
+    const {setUser} = useUserContext()
     const {data} = useGetMe()
 
     useEffect(() => {
-        if (data?.data.msg) {
-            userContext.setUser(data.data.user)
-        }
+        if (data?.data.msg) setUser(data.data.user)
     }, [data])
 
     return (
