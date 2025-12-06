@@ -11,9 +11,10 @@ import {Button} from "@/components/ui/button.tsx";
 import {cn} from "@/shared/utils/cn.ts";
 import {Menu} from "lucide-react";
 import * as React from "react";
+import {useWindowWidth} from "@/shared/hooks/useWindowWidth.ts";
 
-function BurgerWrapper({children}: {children: React.ReactNode}) {
-    const isMobile = window.innerWidth < 937
+function BurgerWrapper({children}: { children: React.ReactNode }) {
+    const isMobile = useWindowWidth() < 937
 
     return (
         <>
