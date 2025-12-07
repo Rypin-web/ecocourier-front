@@ -4,11 +4,12 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import {DataTableRow} from "@/widgets/DataTableRow.tsx";
 import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
+import {PaginationElement} from "@/features/PaginationElement.tsx";
 
 
 function Users() {
-    const [searchData] = useState<TUserSearchParams>({
-        limit: 20,
+    const [searchData, setSearchData] = useState<TUserSearchParams>({
+        limit: 1,
         page: 1,
         sort: "ASC"
     })
@@ -17,6 +18,9 @@ function Users() {
 
     return (
         <div>
+            <h1>
+                {data?.data.data.total}
+            </h1>
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -46,6 +50,14 @@ function Users() {
                     ))}
                 </TableBody>
             </Table>
+            {data?.data.data.total && (
+                <PaginationElement
+                    total={data?.data.data.total}
+                    limit={searchData.limit}
+                    activePage={searchData.page}
+                    set={setSearchData}
+                />
+            )}
         </div>
     );
 }
