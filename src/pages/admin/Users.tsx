@@ -6,19 +6,27 @@ import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {PaginationElement} from "@/features/PaginationElement.tsx";
 import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
+import {SortButton} from "@/features/sortButton.tsx";
 
+type UserSearchParams = TUserSearchParams<
+    'role' | 'first_name' | 'last_name' | 'email' | 'phone'
+>
 
 function Users() {
-    const [searchData, setSearchData] = useState<TUserSearchParams>({
+    const [searchData, setSearchData] = useState<UserSearchParams>({
         limit: 5,
         page: 1,
-        sort: "ASC"
+        sort: "ASC",
+        sortBy: 'createdAt'
     })
     const {data, refetch} = useGetUsers(searchData)
     const {mutate, isPending: isPendingMutate, isSuccess, isError} = useUpdateUserById()
 
     return (
         <div>
+            <div className='flex-row gap-3 mb-5'>
+                <SortButton<UserSearchParams> set={setSearchData} type={searchData.sort} />
+            </div>
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -27,8 +35,6 @@ function Users() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {/*TODO: Обернуть компонент в итем и намутить диалог для изменения данных.
-                    TODO Ну туда можно и удаление вставить*/}
                     {data?.status ? data?.data.data.users.map((e, index) => (
                         <DataTableRow
                             mutate={mutate}
@@ -49,7 +55,7 @@ function Users() {
                 </TableBody>
             </Table>
             {data?.data.data.total ? (
-                <PaginationElement<TUserSearchParams>
+                <PaginationElement<UserSearchParams>
                     total={data?.data.data.total}
                     limit={searchData.limit}
                     activePage={searchData.page}
@@ -59,7 +65,5 @@ function Users() {
         </div>
     );
 }
-
-//TODO: Не забыть про создание пользователя
 
 export {Users};
