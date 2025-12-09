@@ -14,6 +14,7 @@ import type {
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
 import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
+import type {UserSortBy} from "@/shared/types/entities.t.ts";
 
 export function useGetMe(params?: AxiosRequestConfig['params']) {
     return useQuery({
@@ -61,9 +62,9 @@ export function useUpdateUser() {
     })
 }
 
-export function useGetUsers(data: AxiosRequestConfig['params'] & TUserSearchParams) {
+export function useGetUsers(data: AxiosRequestConfig['params'] & TUserSearchParams<UserSortBy>) {
     return useQuery({
-        queryKey: ['GET_USERS', data.limit, data.page, data.sort],
+        queryKey: ['GET_USERS', data.limit, data.page, data.sort, data.sortBy],
         queryFn: async () => await apiService.get<TApiDefResponse<TGetUsersResponseData>>('/users/all', {
             params: data
         })
