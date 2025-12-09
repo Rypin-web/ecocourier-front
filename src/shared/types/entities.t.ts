@@ -11,6 +11,8 @@ export type User = {
     updatedAt: string
 }
 
+export type UserSortBy = 'role' | 'first_name' | 'last_name' | 'email' | 'phone'
+
 export type Basket = {
     id: string
     userId: string
