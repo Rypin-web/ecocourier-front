@@ -23,7 +23,8 @@ export default defineConfig([
       'react-refresh/only-export-components': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'react-hooks/exhaustive-deps': 'off',
-      'react-hooks/set-state-in-effect': 'off'
+      'react-hooks/set-state-in-effect': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off'
     }
   },
 ])
