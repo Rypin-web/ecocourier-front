@@ -1,4 +1,3 @@
-import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
 import {
     Pagination,
     PaginationContent,
@@ -9,14 +8,14 @@ import {
     PaginationPrevious
 } from "@/components/ui/pagination.tsx";
 
-interface PaginationProps {
+type PaginationProps<T> = {
     total: number
     limit: number
     activePage: number
-    set: (value: ((prev: TUserSearchParams) => TUserSearchParams) | TUserSearchParams) => void
+    set: (value: ((prev: T) => T) | T) => void
 }
 
-function PaginationElement({total, limit, activePage, set}: PaginationProps) {
+function PaginationElement<T>({total, limit, activePage, set}: PaginationProps<T>) {
     // Окей, я думаю на это стоит добавить комментарии, потому что я сам уже забыл как это дерьмо работает.
     // Тут мы пока что просто считаем сколько у нас всего страниц.
     const totalPages = Math.ceil(total / limit)

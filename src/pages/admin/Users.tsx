@@ -49,7 +49,7 @@ function Users() {
                 </TableBody>
             </Table>
             {data?.data.data.total ? (
-                <PaginationElement
+                <PaginationElement<TUserSearchParams>
                     total={data?.data.data.total}
                     limit={searchData.limit}
                     activePage={searchData.page}
