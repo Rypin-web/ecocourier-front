@@ -10,7 +10,7 @@ import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
 
 function Users() {
     const [searchData, setSearchData] = useState<TUserSearchParams>({
-        limit: 10,
+        limit: 5,
         page: 1,
         sort: "ASC"
     })
@@ -19,9 +19,6 @@ function Users() {
 
     return (
         <div>
-            <h1>
-                {data?.data.data.total}
-            </h1>
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -38,8 +35,8 @@ function Users() {
                             isSuccess={isSuccess}
                             isError={isError}
                             isPending={isPendingMutate}
-                            index={index}
                             data={e}
+                            index={index}
                             refetch={refetch}
                         />
                     )) : new Array(searchData.limit).fill(0).map(() => (

@@ -1,5 +1,3 @@
-import {TableCell, TableRow} from "@/components/ui/table.tsx";
-import {cn} from "@/shared/utils/cn";
 import {useEffect, useState} from "react";
 import {
     Dialog,
@@ -14,13 +12,15 @@ import type {QueryObserverResult, RefetchOptions, UseMutateFunction} from "@tans
 import type {AxiosResponse} from "axios";
 import type {TApiDefResponse} from "@/shared/utils/apiService.ts";
 import {toast} from "sonner";
+import {cn} from "@/shared/utils/cn.ts";
+import {TableCell, TableRow} from "@/components/ui/table.tsx";
 
 interface DataTableProps {
     data: object & { id: string },
-    index: number
     isPending: boolean
     isSuccess: boolean
     isError: boolean
+    index: number
     mutate: UseMutateFunction<AxiosResponse<TApiDefResponse<any>, any, {}>, Error, any, unknown>
     refetch: (options?: RefetchOptions | undefined) =>
         Promise<QueryObserverResult<AxiosResponse<any, any, {}>, Error>>
