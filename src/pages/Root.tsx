@@ -6,6 +6,7 @@ import {Toaster} from "@/components/ui/sonner.tsx";
 import {Outlet} from "@tanstack/react-router";
 import {useEffect} from "react";
 import {useGetMe} from "@/shared/hooks/useUserService.ts";
+import {WeUseCookie} from "@/features/WeUseCookie.tsx";
 
 export function Root() {
     const {setUser} = useUserContext()
@@ -22,6 +23,7 @@ export function Root() {
             <main>
                 <Outlet />
             </main>
+            <WeUseCookie />
             <TanStackRouterDevtools />
         </ThemeProvider>
     )
