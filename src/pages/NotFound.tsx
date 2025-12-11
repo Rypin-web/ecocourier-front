@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button.tsx";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/shared/utils/cn.ts";
+import {TypographyH1, TypographyP} from "@/components/ui/typography.tsx";
 
 function NotFound() {
     return (
@@ -10,13 +11,13 @@ function NotFound() {
                     <div className="text-8xl font-bold text-chart-5 mb-6 animate-bounce">
                         404
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                    <TypographyH1>
                         Упс! Страница не найдена
-                    </h1>
-                    <p className="text-lg text-muted-foreground mb-8">
+                    </TypographyH1>
+                    <TypographyP className="text-muted-foreground">
                         Похоже, что страница, которую вы ищете, не существует или была перемещена.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    </TypographyP>
+                    <div className="flex mt-8 flex-col sm:flex-row gap-4 justify-center">
                         <Button asChild size="lg" className="px-8 py-6 text-base">
                             <Link to="/">
                                 На главную
