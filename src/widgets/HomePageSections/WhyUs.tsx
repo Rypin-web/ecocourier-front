@@ -2,6 +2,7 @@ import {Button} from "@/components/ui/button";
 import {cn} from "@/shared/utils/cn";
 import {Link} from "@tanstack/react-router";
 import {Leaf, Trophy, Zap} from "lucide-react";
+import {TypographyH1, TypographyH3, TypographyP} from "@/components/ui/typography.tsx";
 
 const features = [
     {
@@ -32,10 +33,10 @@ function WhyUs() {
         <section className={cn('py-16 md:py-24 bg-background/50')}>
             <div className='container mx-auto px-4'>
                 <div className='max-w-3xl mx-auto text-center mb-12 md:mb-16'>
-                    <h2 className='text-3xl md:text-4xl font-bold mb-4'>Почему выбирают нас?</h2>
-                    <p className='text-muted-foreground text-lg'>
+                    <TypographyH1>Почему выбирают нас?</TypographyH1>
+                    <TypographyP className='text-muted-foreground'>
                         Мы заботимся о вашем комфорте и о будущем нашей планеты
-                    </p>
+                    </TypographyP>
                 </div>
 
                 <div className='grid md:grid-cols-3 gap-6 md:gap-8 mb-12'>
@@ -62,8 +63,8 @@ function WhyUs() {
                             >
                                 {feature.icon}
                             </Button>
-                            <h3 className='text-xl font-semibold mb-2'>{feature.title}</h3>
-                            <p className='text-muted-foreground'>{feature.description}</p>
+                            <TypographyH3>{feature.title}</TypographyH3>
+                            <TypographyP className='text-muted-foreground'>{feature.description}</TypographyP>
                         </div>
                     ))}
                 </div>
