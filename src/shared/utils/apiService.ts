@@ -16,8 +16,14 @@ apiService.interceptors.request.use((config) => {
     return config
 })
 
-apiService.interceptors.response.use((res) => res, async (err) => {
+// axios.interceptors.response.use(response => {
+//     return response.headers['content-type'] === 'application/json' ? response : Promise.reject(response);
+// }, error => Promise.reject(error));
 
+apiService.interceptors.response.use((res) => {
+    console.log(res)
+    return res
+}, async (err) => {
     if (axios.isAxiosError(err)) {
         const originalReq = err.config as InternalAxiosRequestConfig<unknown> & { _retry?: boolean } | undefined
 

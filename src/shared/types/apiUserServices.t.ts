@@ -1,5 +1,5 @@
 import type {AxiosRequestConfig} from "axios";
-import type {User, UserRole} from "@/shared/types/entities.t.ts";
+import type {Products, User, UserRole} from "@/shared/types/entities.t.ts";
 
 export type TUserLoginRequiredData = {
     email: string
@@ -84,6 +84,23 @@ export type useUpdateUserByIdMutationProps = {
         first_name: string
         last_name?: string
         phone: string
+    }
+    params?: AxiosRequestConfig['params']
+}
+
+export type TGetProductsResponse = {
+    data: {
+        total: number
+        products: Products[]
+    }
+}
+
+export type TUpdateProductsRequest = {
+    id:string
+    data: {
+        title:string
+        description?: string
+        price: number
     }
     params?: AxiosRequestConfig['params']
 }
