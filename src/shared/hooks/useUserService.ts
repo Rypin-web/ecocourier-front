@@ -13,7 +13,7 @@ import type {
 } from "@/shared/types/apiUserServices.t.ts";
 import type {AxiosRequestConfig} from "axios";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
-import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
+import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import type {UserSortBy} from "@/shared/types/entities.t.ts";
 
 export function useGetMe(params?: AxiosRequestConfig['params']) {
@@ -62,7 +62,7 @@ export function useUpdateUser() {
     })
 }
 
-export function useGetUsers(data: AxiosRequestConfig['params'] & TUserSearchParams<UserSortBy>) {
+export function useGetUsers(data: AxiosRequestConfig['params'] & TSearchParams<UserSortBy>) {
     return useQuery({
         queryKey: ['GET_USERS', data.limit, data.page, data.sort, data.sortBy],
         queryFn: async () => await apiService.get<TApiDefResponse<TGetUsersResponseData>>('/users/all', {
