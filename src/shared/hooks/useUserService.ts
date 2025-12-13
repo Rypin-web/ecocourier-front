@@ -64,7 +64,7 @@ export function useUpdateUser() {
 
 export function useGetUsers(data: AxiosRequestConfig['params'] & TSearchParams<UserSortBy>) {
     return useQuery({
-        queryKey: ['GET_USERS', data.limit, data.page, data.sort, data.sortBy],
+        queryKey: ['GET_USERS', data.page, data.sort, data.sortBy],
         queryFn: async () => await apiService.get<TApiDefResponse<TGetUsersResponseData>>('/users/all', {
             params: data
         })
