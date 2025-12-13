@@ -21,8 +21,8 @@ function PaginationSkeleton() {
                         <PaginationEllipsis className='stroke-white/30' />
                     </Skeleton>
                 </PaginationItem>
-                {new Array(10).fill(0).map(() => (
-                    <PaginationItem>
+                {new Array(10).fill(0).map((e) => (
+                    <PaginationItem key={e}>
                         <Skeleton className='w-9 h-9' />
                     </PaginationItem>
                 ))}

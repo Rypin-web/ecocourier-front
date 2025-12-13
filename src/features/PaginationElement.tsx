@@ -67,7 +67,7 @@ function PaginationElement<T>({total, limit, activePage, set}: PaginationProps<T
                 (if (calculatedPage > totalPages) return calculatedPage - 10)
                 */}
                 {paginationPages.sort((a, b) => a - b).map((e) => (
-                    <PaginationItem className={'cursor-pointer'}>
+                    <PaginationItem className={'cursor-pointer'} key={e}>
                         <PaginationLink onClick={() => changePage(e)} isActive={e === activePage} key={e}>
                             {e}
                         </PaginationLink>
