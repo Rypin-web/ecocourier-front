@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useGetUsers, useUpdateUserById} from "@/shared/hooks/useUserService.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {DataTableRow} from "@/widgets/DataTableRow.tsx";
-import type {TUserSearchParams} from "@/shared/types/serchParams.t.ts";
+import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {PaginationElement} from "@/features/PaginationElement.tsx";
 import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
@@ -10,7 +10,7 @@ import {SortButton} from "@/features/sortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import type {UserSortBy} from "@/shared/types/entities.t.ts";
 
-type UserSearchParams = TUserSearchParams<UserSortBy>
+type UserSearchParams = TSearchParams<UserSortBy>
 
 function Users() {
     const [searchData, setSearchData] = useState<UserSearchParams>({

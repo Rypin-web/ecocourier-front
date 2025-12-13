@@ -1,4 +1,4 @@
-export type TUserSearchParams<T> = {
+export type TSearchParams<T> = {
     limit: number
     page: number
     sort: 'ASC' | 'DESC'
