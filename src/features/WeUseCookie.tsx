@@ -5,16 +5,15 @@ import {TypographyH2, TypographyLarge, TypographyP} from "@/components/ui/typogr
 
 function WeUseCookie() {
     const [visible, setVisible] = useState(false);
+    const accept = () => {
+        localStorage.setItem("use-cookie", "1");
+        setVisible(false);
+    };
 
     useEffect(() => {
         const hasCookie = parseInt(localStorage.getItem("use-cookie") || '0');
         if (!hasCookie) setVisible(true);
     }, []);
-
-    const accept = () => {
-        localStorage.setItem("use-cookie", "1");
-        setVisible(false);
-    };
 
     if (!visible) return null;
 
