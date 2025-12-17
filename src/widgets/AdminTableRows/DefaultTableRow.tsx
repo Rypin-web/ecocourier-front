@@ -24,9 +24,10 @@ interface DataTableProps {
     mutate: UseMutateFunction<AxiosResponse<TApiDefResponse<any>, any, {}>, Error, any, unknown>
     refetch: (options?: RefetchOptions | undefined) =>
         Promise<QueryObserverResult<AxiosResponse<any, any, {}>, Error>>
+    reset: () => void
 }
 
-function DataTableRow({data, index, mutate, refetch, isPending, isError, isSuccess}: DataTableProps) {
+function DefaultTableRow({data, index, mutate, refetch, isPending, isError, isSuccess, reset}: DataTableProps) {
     const toggleIsOpenChangeRow = () => setIsOpenChangeRow(!isOpenChangeRow)
     const [isOpenChangeRow, setIsOpenChangeRow] = useState(false)
 
@@ -46,6 +47,7 @@ function DataTableRow({data, index, mutate, refetch, isPending, isError, isSucce
         if (isSuccess && isOpenChangeRow) {
             toast.success('Изменения выполнены!')
             refetch()
+            reset()
             setIsOpenChangeRow(false)
         }
     }, [isError, isSuccess, isOpenChangeRow])
@@ -96,4 +98,4 @@ function DataTableRow({data, index, mutate, refetch, isPending, isError, isSucce
     )
 }
 
-export {DataTableRow};
+export {DefaultTableRow};
