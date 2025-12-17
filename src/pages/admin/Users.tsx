@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useGetUsers, useUpdateUserById} from "@/shared/hooks/useUserService.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
-import {DataTableRow} from "@/widgets/DataTableRow.tsx";
+import {DefaultTableRow} from "@/widgets/AdminTableRows/DefaultTableRow.tsx";
 import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {PaginationElement} from "@/features/PaginationElement.tsx";
@@ -20,7 +20,7 @@ function Users() {
         sortBy: 'createdAt'
     })
     const {data, refetch} = useGetUsers(searchData)
-    const {mutate, isPending: isPendingMutate, isSuccess, isError} = useUpdateUserById()
+    const {mutate, isPending: isPendingMutate, isSuccess, isError, reset} = useUpdateUserById()
 
     console.log(searchData)
 
@@ -49,7 +49,7 @@ function Users() {
                 </TableHeader>
                 <TableBody>
                     {data?.status ? data?.data.data.users.map((e, index) => (
-                        <DataTableRow
+                        <DefaultTableRow
                             mutate={mutate}
                             isSuccess={isSuccess}
                             isError={isError}
@@ -57,6 +57,7 @@ function Users() {
                             data={e}
                             index={index}
                             refetch={refetch}
+                            reset={reset}
                         />
                     )) : new Array(searchData.limit).fill(0).map(() => (
                         <TableRow>
