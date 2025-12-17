@@ -38,7 +38,8 @@ export type Products = {
     description?: string
     price: number
     image?: string
-    category_id: Categories
+    category_id: string
+    Category: {name: string}
     createdAt: string
     updatedAt: string
 }

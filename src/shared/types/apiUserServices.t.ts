@@ -98,9 +98,14 @@ export type TGetProductsResponse = {
 export type TUpdateProductsRequest = {
     id:string
     data: {
+        id: string
         title:string
         description?: string
         price: number
+        image: string
+        category_id: string
+        createdAt: string
+        updatedAt: string
     }
     params?: AxiosRequestConfig['params']
 }
