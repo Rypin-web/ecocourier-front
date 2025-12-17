@@ -5,10 +5,10 @@ import {useGetProducts, useUpdateProduct} from "@/shared/hooks/useProductsServic
 import {SortButton} from "@/features/sortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
-import {DataTableRow} from "@/widgets/DataTableRow.tsx";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {PaginationElement} from "@/features/PaginationElement.tsx";
 import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
+import {ProductTableRow} from "@/widgets/AdminTableRows/ProductTableRow.tsx";
 
 type ProductsSearchParams = TSearchParams<ProductsSortBy>
 
@@ -19,8 +19,8 @@ function Products() {
         sort: "ASC",
         sortBy: 'createdAt'
     })
-    const {data, refetch} = useGetProducts(searchData)
-    const {mutate, isPending, isSuccess, isError} = useUpdateProduct()
+    const {data, isSuccess: isSuccessQuery, refetch} = useGetProducts(searchData)
+    const {mutate, isSuccess, isError, isPending, reset} = useUpdateProduct()
     console.log(data)
 
     return (
@@ -31,9 +31,9 @@ function Products() {
                 <SelectSortBy<ProductsSearchParams> set={setSearchData} sortBy={searchData.sortBy} values={{
                     id: 'Индекс',
                     title: 'Название',
-                    description: 'Описание',
                     price: 'Цена',
-                    image: 'Изображение',
+                    description: 'Описание',
+                    category_id: 'Категория',
                     createdAt: 'Создано',
                     updatedAt: 'Обновлено'
                 }} />
@@ -41,29 +41,31 @@ function Products() {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        {['Индекс', 'Название', 'Описание', 'Цена', 'Изображение', 'Создано:', 'Обновлено:']
+                        {['Индекс', 'Название', 'Цена', 'Описание', 'Категория', 'Изображение', 'Создано:', 'Обновлено:']
                             .map((e) => <TableHead key={e}>{e}</TableHead>)}
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data?.status ? data?.data.data.products.map((e, index) => (
-                        <DataTableRow
-                            mutate={mutate}
-                            isSuccess={isSuccess}
-                            isError={isError}
-                            isPending={isPending}
+                    {isSuccessQuery && data?.data.data.products.map((e, index) => (
+                        <ProductTableRow
                             data={e}
                             index={index}
                             refetch={refetch}
-                            key={index}
+                            mutate={mutate}
+                            isError={isError}
+                            isSuccess={isSuccess}
+                            isPending={isPending}
+                            reset={reset}
                         />
-                    )) : new Array(searchData.limit).fill(0).map((e) => (
-                        <TableRow key={e}>
-                            <TableCell colSpan={8}>
-                                <Skeleton className='h-12 w-full' />
-                            </TableCell>
-                        </TableRow>
                     ))}
+                    {!isSuccessQuery && (new Array(searchData.limit).fill(0).map((e) => (
+                            <TableRow key={e}>
+                                <TableCell colSpan={8}>
+                                    <Skeleton className='h-12 w-full' />
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    )}
                 </TableBody>
             </Table>
             {data?.data.data.total ? (
