@@ -18,6 +18,7 @@ import {apiUrl} from "@/shared/constants/api.ts";
 import type {Products} from "@/shared/types/entities.t.ts";
 import {useAppForm} from "@/shared/hooks/useAppForm.ts";
 import {toast} from "sonner";
+import {Button} from "@/components/ui/button.tsx";
 
 interface ProductTableRowProps {
     index: number
@@ -28,9 +29,29 @@ interface ProductTableRowProps {
     refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<AxiosResponse<TApiDefResponse<TGetProductsResponse>, any, {}>, Error>>
     mutate: UseMutateFunction<AxiosResponse<any, any, {}>, Error, TUpdateProductsRequest, unknown>
     reset: () => void
+    deleteProduct: UseMutateFunction<AxiosResponse<TApiDefResponse<{ data: {} }>, any, {}>, Error, string, unknown>
+    resetDelete: () => void
+    isErrorDelete: boolean
+    isPendingDelete: boolean
+    isSuccessDelete: boolean
 }
 
-function ProductTableRow({data, isError, isPending, isSuccess, refetch, index, mutate, reset}: ProductTableRowProps) {
+function ProductTableRow(
+    {
+        data,
+        isError,
+        isPending,
+        isSuccess,
+        refetch,
+        index,
+        mutate,
+        reset,
+        deleteProduct,
+        resetDelete,
+        isErrorDelete,
+        isSuccessDelete,
+        isPendingDelete
+    }: ProductTableRowProps) {
     const [isOpenChangeRow, setIsOpenChangeRow] = useState(false)
     const toggleIsOpenChangeRow = () => setIsOpenChangeRow(!isOpenChangeRow)
     const defaultValues = {
@@ -51,8 +72,18 @@ function ProductTableRow({data, isError, isPending, isSuccess, refetch, index, m
     })
 
     useEffect(() => {
-        if (isError) toast.error('Не удалось изменить')
-        if (isSuccess) {
+        if (isErrorDelete && isOpenChangeRow) toast.error('Не удалось удалить')
+        if (isSuccessDelete && isOpenChangeRow) {
+            toast.success(data.title + ' удален')
+            refetch()
+            resetDelete()
+            setIsOpenChangeRow(false)
+        }
+    }, [isErrorDelete, isPendingDelete, isOpenChangeRow])
+
+    useEffect(() => {
+        if (isError && isOpenChangeRow) toast.error('Не удалось изменить')
+        if (isSuccess && isOpenChangeRow) {
             toast.success('Успешно!')
             refetch()
             reset()
@@ -71,7 +102,7 @@ function ProductTableRow({data, isError, isPending, isSuccess, refetch, index, m
                     <TableCell>{data.Category.name}</TableCell>
                     <TableCell>
                         <AspectRatio ratio={1 / 1}>
-                            <img className='rounded-xl' src={apiUrl + data.image} />
+                            <img className='rounded-xl w-full h-full' src={apiUrl + data.image} />
                         </AspectRatio>
                     </TableCell>
                     <TableCell>{data.createdAt}</TableCell>
@@ -98,7 +129,10 @@ function ProductTableRow({data, isError, isPending, isSuccess, refetch, index, m
                         )
                     })}
 
-                    <DialogFooter>
+                    <DialogFooter className='flex flex-row !justify-between'>
+                        <Button variant={"secondary"} disabled={isPendingDelete} type={'button'} onClick={() => {
+                            deleteProduct(data.id)
+                        }}>Удалить</Button>
                         <form.AppForm>
                             <form.SubmitButton
                                 isPending={isPending}
