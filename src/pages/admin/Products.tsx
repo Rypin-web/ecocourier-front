@@ -1,7 +1,7 @@
 import {useState} from "react";
 import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import type {ProductsSortBy} from "@/shared/types/entities.t.ts";
-import {useGetProducts, useUpdateProduct} from "@/shared/hooks/useProductsService.ts";
+import {useDeleteProduct, useGetProducts, useUpdateProduct} from "@/shared/hooks/useProductsService.ts";
 import {SortButton} from "@/features/sortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
@@ -21,8 +21,8 @@ function Products() {
     })
     const {data, isSuccess: isSuccessQuery, refetch} = useGetProducts(searchData)
     const {mutate, isSuccess, isError, isPending, reset} = useUpdateProduct()
+    const {mutate: deleteProduct, isSuccess:isSuccessDelete, reset: resetDelete, isError: isErrorDelete, isPending:isPendingDelete} = useDeleteProduct()
     console.log(data)
-
     return (
         <div>
             <div className='flex flex-row gap-3 mb-5 place-items-center'>
@@ -48,6 +48,7 @@ function Products() {
                 <TableBody>
                     {isSuccessQuery && data?.data.data.products.map((e, index) => (
                         <ProductTableRow
+                            key={index}
                             data={e}
                             index={index}
                             refetch={refetch}
@@ -56,6 +57,11 @@ function Products() {
                             isSuccess={isSuccess}
                             isPending={isPending}
                             reset={reset}
+                            isErrorDelete={isErrorDelete}
+                            isPendingDelete={isPendingDelete}
+                            resetDelete={resetDelete}
+                            deleteProduct={deleteProduct}
+                            isSuccessDelete={isSuccessDelete}
                         />
                     ))}
                     {!isSuccessQuery && (new Array(searchData.limit).fill(0).map((e) => (
