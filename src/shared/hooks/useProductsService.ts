@@ -24,3 +24,12 @@ export function useUpdateProduct() {
         )
     })
 }
+
+export function useDeleteProduct() {
+    return useMutation({
+        mutationKey: ['DELETE_PRODUCT'],
+        mutationFn: async (id: string, params: AxiosRequestConfig['params']) => (
+            await apiService.delete<TApiDefResponse<{ data: {} }>>(`/products/${id}`, {params: params})
+        )
+    })
+}
