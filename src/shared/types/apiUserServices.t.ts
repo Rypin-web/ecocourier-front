@@ -107,5 +107,4 @@ export type TUpdateProductsRequest = {
         createdAt: string
         updatedAt: string
     }
-    params?: AxiosRequestConfig['params']
 }

@@ -87,7 +87,7 @@ function ProductTableRow(
       formData.append('createdAt', value.createdAt)
       formData.append('updatedAt', value.updatedAt)
       if (value.image instanceof File) {
-        const imageFile = new File([value.image], 'image', {
+        const imageFile = new File([value.image], 'image.' + value.image.type.split('/').pop(), {
           type: value.image.type
         })
         formData.append('image', imageFile)
@@ -95,7 +95,10 @@ function ProductTableRow(
       console.log('formData', formData)
 
 
-      mutate({id: value.id, data: formData as unknown as TUpdateProductsRequest['data']})
+      mutate({
+        id: value.id,
+        data: formData as unknown as TUpdateProductsRequest['data']
+      })
     }
   })
 
