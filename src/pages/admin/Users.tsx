@@ -6,7 +6,7 @@ import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {PaginationElement} from "@/features/PaginationElement.tsx";
 import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
-import {SortButton} from "@/features/sortButton.tsx";
+import {SortButton} from "@/features/SortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import type {UserSortBy} from "@/shared/types/entities.t.ts";
 

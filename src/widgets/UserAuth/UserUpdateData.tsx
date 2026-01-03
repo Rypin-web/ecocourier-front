@@ -13,7 +13,7 @@ import {cn} from "@/shared/utils/cn.ts";
 import {useAppForm} from "@/shared/hooks/useAppForm.ts";
 import z from "zod";
 import {toast} from "sonner";
-import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {useUserContext} from "@/shared/providers/UserProvider.tsx";
 
 const schema = z.object({
     first_name: z.string().min(2).max(128),

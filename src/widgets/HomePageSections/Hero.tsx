@@ -2,7 +2,7 @@ import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/shared/utils/cn";
 import {Link} from "@tanstack/react-router";
-import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {useUserContext} from "@/shared/providers/UserProvider.tsx";
 import {apiUrl} from "@/shared/constants/api.ts";
 import {AspectRatio} from "@/components/ui/aspect-ratio.tsx";
 

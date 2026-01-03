@@ -1,4 +1,4 @@
-import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {useUserContext} from "@/shared/providers/UserProvider.tsx";
 import {NotFound} from "@/pages/NotFound.tsx";
 import type {ReactNode} from "react";
 

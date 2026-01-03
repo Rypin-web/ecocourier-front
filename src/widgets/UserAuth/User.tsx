@@ -2,7 +2,7 @@ import {Item, ItemContent} from "@/components/ui/item.tsx";
 import {cn} from "@/shared/utils/cn.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {UserAuthManager} from "@/widgets/UserAuth/UserAuthManager.tsx";
-import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {useUserContext} from "@/shared/providers/UserProvider.tsx";
 import {SheetHeader, SheetTitle} from "@/components/ui/sheet.tsx";
 import {useLogout} from "@/shared/hooks/useUserService.ts";
 import {useEffect} from "react";

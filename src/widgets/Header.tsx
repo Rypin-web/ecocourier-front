@@ -5,10 +5,10 @@ import {Item, ItemActions, ItemContent} from "@/components/ui/item.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger} from "@/components/ui/sheet.tsx";
-import {BurgerWrapper} from "@/shared/ui/burgerWrapper.tsx";
+import {BurgerWrapper} from "@/shared/ui/BurgerWrapper.tsx";
 import {ThemeSelector} from "@/features/ThemeSelector.tsx";
 import {Navigation} from "@/widgets/Navigation.tsx";
-import {useUserContext} from "@/shared/providers/userProvider.tsx";
+import {useUserContext} from "@/shared/providers/UserProvider.tsx";
 import {User} from "@/widgets/UserAuth/User.tsx";
 import {useWindowWidth} from "@/shared/hooks/useWindowWidth.ts";
 

@@ -2,7 +2,7 @@ import {useState} from "react";
 import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import type {ProductsSortBy} from "@/shared/types/entities.t.ts";
 import {useDeleteProduct, useGetProducts, useUpdateProduct} from "@/shared/hooks/useProductsService.ts";
-import {SortButton} from "@/features/sortButton.tsx";
+import {SortButton} from "@/features/SortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {Skeleton} from "@/components/ui/skeleton.tsx";

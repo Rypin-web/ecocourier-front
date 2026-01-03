@@ -1,4 +1,4 @@
-import {useTheme} from "@/shared/providers/themeProvider.tsx";
+import {useTheme} from "@/shared/providers/ThemeProvider.tsx";
 import {cn} from "@/shared/utils/cn.ts";
 import {Button} from "@/components/ui/button.tsx";
 

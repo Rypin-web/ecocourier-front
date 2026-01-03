@@ -1,4 +1,4 @@
-import {useUserContext} from "@/shared/providers/userProvider";
+import {useUserContext} from "@/shared/providers/UserProvider.tsx";
 import {useLogin} from "@/shared/hooks/useUserService";
 import {useAppForm} from "@/shared/hooks/useAppForm";
 import z from "zod";
