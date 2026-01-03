@@ -59,7 +59,7 @@ function FormDnd({field, image}: FormInputProps) {
             </AspectRatio>
             <ExternalLink size={70} color={isDragAccept? '#008236' : 'transparent'} className={cn(
               'absolute translate-x-[255%] translate-y-[-120%] !stroke-red z-1 scale-x-[-1] rotate-5',
-              'transition-colors duration-250 ease-in-out delay-150',
+              'transition-colors duration-250 ease-in-out delay-50',
               isDragAccept && 'animate-wiggle'
             )} />
           </>
@@ -75,7 +75,7 @@ function FormDnd({field, image}: FormInputProps) {
             </AspectRatio>
             <ExternalLink size={70} color={isDragAccept? '#008236' : 'transparent'} className={cn(
               'absolute translate-x-[255%] translate-y-[-120%] !stroke-red z-1 scale-x-[-1] rotate-5',
-              'transition-colors duration-250 ease-in-out delay-150',
+              'transition-colors duration-250 ease-in-out delay-50',
               isDragAccept && 'animate-wiggle'
             )} />
           </>
