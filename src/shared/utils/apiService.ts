@@ -16,21 +16,12 @@ apiService.interceptors.request.use((config) => {
     return config
 })
 
-// axios.interceptors.response.use(response => {
-//     return response.headers['content-type'] === 'application/json' ? response : Promise.reject(response);
-// }, error => Promise.reject(error));
-
-apiService.interceptors.response.use((res) => {
-    console.log(res)
-    return res
-}, async (err) => {
+apiService.interceptors.response.use((res) => res, async (err) => {
     if (axios.isAxiosError(err)) {
         const originalReq = err.config as InternalAxiosRequestConfig<unknown> & { _retry?: boolean } | undefined
 
-        if (originalReq?.url === '/users/refresh') {
-            localStorage.removeItem('token')
+        if (originalReq?.url === '/users/refresh')
             return Promise.reject(err)
-        }
 
         if (err.response?.status === 401 && originalReq && !originalReq?._retry) {
             originalReq._retry = true
@@ -39,10 +30,9 @@ apiService.interceptors.response.use((res) => {
                 const {data} = await apiService.get<TApiDefResponse<TUserRefreshResponseData>>('/users/refresh')
                 localStorage.setItem('token', data.data.sessionToken)
 
-                originalReq.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+                originalReq.headers.Authorization = `Bearer ${data.data.sessionToken}`
                 return apiService(originalReq)
             } catch (e) {
-                localStorage.removeItem('token')
                 return Promise.reject(e)
             }
         }
