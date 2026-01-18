@@ -1,6 +1,6 @@
 import type {QueryObserverResult, RefetchOptions, UseMutateFunction} from "@tanstack/react-query";
 import type {AxiosResponse} from "axios";
-import type {TApiDefResponse} from "@/shared/utils/apiService.ts";
+import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
 import type {TGetProductsResponse, TUpdateProductsRequest} from "@/shared/types/apiUserServices.t.ts";
 import {useEffect, useState} from "react";
 import {
@@ -140,11 +140,12 @@ function ProductTableRow(
           <TableCell>{data.updatedAt}</TableCell>
         </TableRow>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent >
         <DialogHeader>
           <DialogTitle>Изменить данные</DialogTitle>
         </DialogHeader>
         <form
+          className='overflow-y-scroll max-h-[700px]'
           onSubmit={async (e) => {
             e.preventDefault()
             await form.handleSubmit()
@@ -159,6 +160,23 @@ function ProductTableRow(
               )} />
             )
 
+            if (key === 'category_id') return (
+              <form.AppField name={key as keyof typeof defaultValues} children={(field) => (
+                <field.FormSelect
+                  field={field}
+                  placeholder={'Выберите категорию'}
+                  label={'Категория'}
+                  fetchEntities={(search) => apiService.get('/categories/', {
+                    params: {
+                      q: search,
+                      limit: 100,
+                      page: 1
+                    }
+                  })}
+                />
+              )}
+              />)
+
             return (
               <form.AppField name={key as keyof typeof defaultValues} children={(field) => (
                 <field.FormInput field={field} key={key} placeholder={'Enter ' + key} label={key} />
@@ -166,7 +184,7 @@ function ProductTableRow(
             )
           })}
 
-          <DialogFooter className='flex flex-row !justify-between'>
+          <DialogFooter className='flex flex-row mt-5 !justify-between'>
             <Button variant={"secondary"} disabled={isPendingDelete} type={'button'} onClick={() => {
               deleteProduct(data.id)
             }}>Удалить</Button>
