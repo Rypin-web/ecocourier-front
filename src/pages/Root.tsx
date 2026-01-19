@@ -1,4 +1,3 @@
-import {TanStackRouterDevtools} from "@tanstack/router-devtools";
 import {ThemeProvider} from "@/shared/providers/ThemeProvider.tsx";
 import {Header} from "@/widgets/Header.tsx";
 import {useUserContext} from "@/shared/providers/UserProvider.tsx";
@@ -20,11 +19,11 @@ export function Root() {
         <ThemeProvider>
             <Toaster position={"bottom-left"} />
             <Header />
-            <main>
+            <main className='mt-[50px]'>
                 <Outlet />
             </main>
             <WeUseCookie />
-            <TanStackRouterDevtools />
+            {/*<TanStackRouterDevtools />*/}
         </ThemeProvider>
     )
 }

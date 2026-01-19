@@ -16,7 +16,9 @@ export function Header() {
     const {isOpen, toggleOpen} = useUserContext()
 
     return (
-        <header className={cn('sticky top-0 z-50 w-full bg-background px-1 md:px-10 py-3 shadow-sm flex ',
+        <header className={cn('fixed top-0 z-50 w-full bg-background/80 backdrop-blur-3xl px-1 md:px-10 py-3' +
+          ' shadow-sm' +
+          ' flex ',
             'items-center gap-1 border-b-1 border-white/20',
             ' md:gap-10 mb-[25px]')}>
             <Link to={'/'}>

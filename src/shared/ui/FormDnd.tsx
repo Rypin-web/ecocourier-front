@@ -29,7 +29,7 @@ function FormDnd({field, image}: FormInputProps) {
     <div className='size-70 mx-auto mb-[40px] text-center'>
       <div {...getRootProps()} className={cn(
         'rounded-xl p-1 border-3 border-dashed border-transparent outline-none transition-all duration-200 ease-in-out',
-        'hover:p-5 hover:border-chart-5/50',
+        'hover:p-5 hover:border-chart-5/50 focus:p-5 focus:border-chart-5/50',
         isDragAccept && 'border-primary',
         isDragReject && 'border-destructive p-5',
         !!file && !isDragAccept && !isDragReject ? 'border-primary/40' : ''
