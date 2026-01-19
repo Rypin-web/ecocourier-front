@@ -8,9 +8,9 @@ import {useQuery} from "@tanstack/react-query";
 import {Command, CommandEmpty, CommandInput, CommandItem, CommandList} from "@/components/ui/command.tsx";
 import {Check} from "lucide-react";
 import {cn} from "@/shared/utils/cn.ts";
-import {Spinner} from "@/components/ui/spinner.tsx";
 import type {AxiosResponse} from "axios";
 import type {TApiDefResponse} from "@/shared/utils/apiService.ts";
+import {Skeleton} from "@/components/ui/skeleton.tsx";
 
 interface Entity {
   data: {
@@ -62,12 +62,16 @@ function FormSelect<T extends Entity>({field, fetchEntities, placeholder, label}
               value={search}
               onValueChange={setSearch}
             />
-            <CommandList>
-              <CommandEmpty>Ничего не найдено</CommandEmpty>
+            <CommandList className='max-h-[420px] overflow-y-scroll'>
+              {!isLoading && <CommandEmpty>Ничего не найдено</CommandEmpty>}
               {isLoading
-                ? (<Spinner />)
+                ? (
+                  new Array(10).fill(0).map(() => (
+                    <Skeleton className='h-6 w-full mt-1'/>
+                  ))
+                )
                 : (data?.data.data.data.map((e) => (
-                  <CommandItem key={e.id} value={e.name} onSelect={() => {
+                  <CommandItem className='mt-1' key={e.id} value={e.name} onSelect={() => {
                     field.handleChange(e.id)
                     setOpen(false)
                   }}>
