@@ -13,6 +13,7 @@ function User() {
     const {user, setUser, setBasket} = useUserContext()
     const {mutate, isPending, isSuccess} = useLogout()
     const navigate = useNavigate()
+    const selectedAdminTable = localStorage.getItem('selectedAdminTable') ?? ''
 
     useEffect(() => {
         if (isSuccess) {
@@ -39,7 +40,9 @@ function User() {
                 <h2 className={cn('mb-5')}>Телефон: {user.phone}</h2>
                 <UserUpdateData />
                   {user.role === 'admin' &&
-                    <Button variant={'outline'} onClick={() => navigate({to: '/admin'})}>
+                    <Button variant={'outline'} onClick={() => navigate({
+                        to: `/admin${selectedAdminTable ? selectedAdminTable : '/users'}`
+                    })}>
                       Администратор
                     </Button>}
                 <Button variant={"secondary"} disabled={isPending} onClick={() => mutate()}>

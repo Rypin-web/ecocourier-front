@@ -140,7 +140,7 @@ function ProductTableRow(
           <TableCell>{data.updatedAt}</TableCell>
         </TableRow>
       </DialogTrigger>
-      <DialogContent >
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Изменить данные</DialogTitle>
         </DialogHeader>

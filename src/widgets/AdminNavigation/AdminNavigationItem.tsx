@@ -9,9 +9,13 @@ interface AdminNavigationItemProps {
 }
 
 function AdminNavigationItem({children, modelName,}: AdminNavigationItemProps) {
+    const handleClick = (name:string) => {
+        localStorage.setItem('selectedAdminTable', `/${name}`)
+    }
+
     return (
         <Item asChild variant={'outline'} className={'mb-3'}>
-            <Link to={'/admin/' + modelName}>
+            <Link to={'/admin/' + modelName} onClick={() => handleClick(modelName)}>
                 <ItemContent>
                     <ItemTitle className={'text-lg'}>
                         {children}
