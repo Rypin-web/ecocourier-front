@@ -7,7 +7,7 @@ import type {TGetProductsResponse, TUpdateProductsRequest} from "@/shared/types/
 
 export function useGetProducts(params: AxiosRequestConfig['params'] & TSearchParams<ProductsSortBy>) {
   return useQuery({
-    queryKey: ['GET_PRODUCTS_ALL', params.sortBy, params.page, params.sort],
+    queryKey: ['GET_PRODUCTS_ALL', params.sortBy, params.page, params.sort, params.q],
     queryFn: async () => await apiService.get<TApiDefResponse<TGetProductsResponse>>('/products', {
       params: params
     })

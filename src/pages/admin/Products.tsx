@@ -9,81 +9,94 @@ import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {PaginationElement} from "@/features/PaginationElement.tsx";
 import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
 import {ProductTableRow} from "@/widgets/AdminTableRows/ProductTableRow.tsx";
+import {Input} from "@/components/ui/input.tsx";
+import {useDebounce} from "@/shared/hooks/useDebounce.ts";
+import {useSearchParams} from "@/shared/hooks/useSearchParams.ts";
 
 type ProductsSearchParams = TSearchParams<ProductsSortBy>
 
 function Products() {
-    const [searchData, setSearchData] = useState<ProductsSearchParams>({
-        limit: 5,
-        page: 1,
-        sort: "ASC",
-        sortBy: 'createdAt'
-    })
-    const {data, isSuccess: isSuccessQuery, refetch} = useGetProducts(searchData)
-    const {mutate, isSuccess, isError, isPending, reset} = useUpdateProduct()
-    const {mutate: deleteProduct, isSuccess:isSuccessDelete, reset: resetDelete, isError: isErrorDelete, isPending:isPendingDelete} = useDeleteProduct()
-    console.log(data)
-    return (
-        <div>
-            <div className='flex flex-row gap-3 mb-5 place-items-center'>
-                <SortButton<ProductsSearchParams> set={setSearchData} type={searchData.sort} />
-                <span>Сортировать по: </span>
-                <SelectSortBy<ProductsSearchParams> set={setSearchData} sortBy={searchData.sortBy} values={{
-                    id: 'Индекс',
-                    title: 'Название',
-                    price: 'Цена',
-                    description: 'Описание',
-                    category_id: 'Категория',
-                    createdAt: 'Создано',
-                    updatedAt: 'Обновлено'
-                }} />
-            </div>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        {['Индекс', 'Название', 'Цена', 'Описание', 'Категория', 'Изображение', 'Создано:', 'Обновлено:']
-                            .map((e) => <TableHead key={e}>{e}</TableHead>)}
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {isSuccessQuery && data?.data.data.products.map((e, index) => (
-                        <ProductTableRow
-                            key={index}
-                            data={e}
-                            index={index}
-                            refetch={refetch}
-                            mutate={mutate}
-                            isError={isError}
-                            isSuccess={isSuccess}
-                            isPending={isPending}
-                            reset={reset}
-                            isErrorDelete={isErrorDelete}
-                            isPendingDelete={isPendingDelete}
-                            resetDelete={resetDelete}
-                            deleteProduct={deleteProduct}
-                            isSuccessDelete={isSuccessDelete}
-                        />
-                    ))}
-                    {!isSuccessQuery && (new Array(searchData.limit).fill(0).map((e) => (
-                            <TableRow key={e}>
-                                <TableCell colSpan={8}>
-                                    <Skeleton className='h-12 w-full' />
-                                </TableCell>
-                            </TableRow>
-                        ))
-                    )}
-                </TableBody>
-            </Table>
-            {data?.data.data.total ? (
-                <PaginationElement<ProductsSearchParams>
-                    total={data?.data.data.total}
-                    limit={searchData.limit}
-                    activePage={searchData.page}
-                    set={setSearchData}
-                />
-            ) : (<PaginationSkeleton />)}
-        </div>
-    );
+  const [searchProduct, setSearchProduct] = useState('')
+  const debouncedSearch = useDebounce(searchProduct, 500)
+  const [searchData, setSearchData] = useSearchParams<ProductsSearchParams>({
+    q: debouncedSearch,
+    limit: 5,
+    page: 1,
+    sort: "ASC",
+    sortBy: 'createdAt'
+  })
+  const {data, isSuccess: isSuccessQuery, refetch} = useGetProducts(searchData)
+  const {mutate, isSuccess, isError, isPending, reset} = useUpdateProduct()
+  const {
+    mutate: deleteProduct,
+    isSuccess: isSuccessDelete,
+    reset: resetDelete,
+    isError: isErrorDelete,
+    isPending: isPendingDelete
+  } = useDeleteProduct()
+
+  return (
+    <div>
+      <div className='flex flex-row gap-3 mb-5 place-items-center'>
+        <Input className='max-w-[360px]' placeholder='Искать...' onChange={(e) => setSearchProduct(e.target.value)} />
+        <SortButton<ProductsSearchParams> set={setSearchData} type={searchData.sort} />
+        <span>Сортировать по: </span>
+        <SelectSortBy<ProductsSearchParams> set={setSearchData} sortBy={searchData.sortBy} values={{
+          id: 'Индекс',
+          title: 'Название',
+          price: 'Цена',
+          description: 'Описание',
+          category_id: 'Категория',
+          createdAt: 'Создано',
+          updatedAt: 'Обновлено'
+        }} />
+      </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {['Индекс', 'Название', 'Цена', 'Описание', 'Категория', 'Изображение', 'Создано:', 'Обновлено:']
+              .map((e) => <TableHead key={e}>{e}</TableHead>)}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {isSuccessQuery && data?.data.data.products.map((e, index) => (
+            <ProductTableRow
+              key={index}
+              data={e}
+              index={index}
+              refetch={refetch}
+              mutate={mutate}
+              isError={isError}
+              isSuccess={isSuccess}
+              isPending={isPending}
+              reset={reset}
+              isErrorDelete={isErrorDelete}
+              isPendingDelete={isPendingDelete}
+              resetDelete={resetDelete}
+              deleteProduct={deleteProduct}
+              isSuccessDelete={isSuccessDelete}
+            />
+          ))}
+          {!isSuccessQuery && (new Array(searchData.limit).fill(0).map((e) => (
+              <TableRow key={e}>
+                <TableCell colSpan={8}>
+                  <Skeleton className='h-12 w-full' />
+                </TableCell>
+              </TableRow>
+            ))
+          )}
+        </TableBody>
+      </Table>
+      {data?.data.data.total ? (
+        <PaginationElement<ProductsSearchParams>
+          total={data?.data.data.total}
+          limit={searchData.limit}
+          activePage={searchData.page}
+          set={setSearchData}
+        />
+      ) : (<PaginationSkeleton />)}
+    </div>
+  );
 }
 
 export {Products};
