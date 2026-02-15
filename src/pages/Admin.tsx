@@ -6,7 +6,7 @@ function Admin() {
     return (
         <>
             <AdminNavigation />
-            <div className={'pl-[250px]'}>
+            <div className={'pl-[250px] pt-[70px]'}>
                 <Outlet />
             </div>
         </>
