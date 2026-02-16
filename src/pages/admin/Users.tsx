@@ -9,75 +9,82 @@ import {PaginationSkeleton} from "@/features/PaginationSkeleton.tsx";
 import {SortButton} from "@/features/SortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import type {UserSortBy} from "@/shared/types/entities.t.ts";
+import {useSearchParams} from "@/shared/hooks/useSearchParams.ts";
+import {useDebounce} from "@/shared/hooks/useDebounce.ts";
+import {Input} from "@/components/ui/input.tsx";
 
 type UserSearchParams = TSearchParams<UserSortBy>
 
 function Users() {
-    const [searchData, setSearchData] = useState<UserSearchParams>({
-        limit: 5,
-        page: 1,
-        sort: "ASC",
-        sortBy: 'createdAt'
-    })
-    const {data, refetch} = useGetUsers(searchData)
-    const {mutate, isPending: isPendingMutate, isSuccess, isError, reset} = useUpdateUserById()
+  const [searchUser, setSearchUser] = useState('')
+  const debouncedSearchUser = useDebounce(searchUser, 500)
+  const [searchData, setSearchData] = useSearchParams<UserSearchParams>({
+    q: debouncedSearchUser,
+    limit: 5,
+    page: 1,
+    sort: "ASC",
+    sortBy: 'createdAt'
+  })
+  const {data, refetch} = useGetUsers(searchData)
+  const {mutate, isPending: isPendingMutate, isSuccess, isError, reset} = useUpdateUserById()
 
-    console.log(searchData)
+  console.log(searchData)
 
-    return (
-        <div>
-            <div className='flex flex-row gap-3 mb-5 place-items-center'>
-                <SortButton<UserSearchParams> set={setSearchData} type={searchData.sort} />
-                <span>Сортировать по: </span>
-                <SelectSortBy<UserSearchParams> set={setSearchData} sortBy={searchData.sortBy} values={{
-                    id: 'Индекс',
-                    role: 'Роль',
-                    first_name: 'Имя',
-                    last_name: 'Фамилия',
-                    email: 'Почта',
-                    phone: 'Телефон',
-                    createdAt: 'Создано',
-                    updatedAt: 'Обновлено'
-                }} />
-            </div>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        {['Индекс', 'Роль', 'Имя', 'Фамилия', 'Почта', 'Номер', 'Создано:', 'Обновлено:']
-                            .map((e) => <TableHead>{e}</TableHead>)}
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {data?.status ? data?.data.data.users.map((e, index) => (
-                        <DefaultTableRow
-                            mutate={mutate}
-                            isSuccess={isSuccess}
-                            isError={isError}
-                            isPending={isPendingMutate}
-                            data={e}
-                            index={index}
-                            refetch={refetch}
-                            reset={reset}
-                        />
-                    )) : new Array(searchData.limit).fill(0).map(() => (
-                        <TableRow>
-                            <TableCell colSpan={8}>
-                                <Skeleton className='h-12 w-full' />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-            {data?.data.data.total ? (
-                <PaginationElement<UserSearchParams>
-                    total={data?.data.data.total}
-                    limit={searchData.limit}
-                    activePage={searchData.page}
-                    set={setSearchData}
-                />
-            ) : (<PaginationSkeleton />)}
-        </div>
-    );
+  return (
+    <div>
+      <div className='flex flex-row gap-3 mb-5 place-items-center'>
+        <Input className='max-w-[360px]' placeholder='Искать...' onChange={(e) => setSearchUser(e.target.value)} />
+        <SortButton<UserSearchParams> set={setSearchData} type={searchData.sort} />
+        <span>Сортировать по: </span>
+        <SelectSortBy<UserSearchParams> set={setSearchData} sortBy={searchData.sortBy} values={{
+          id: 'Индекс',
+          role: 'Роль',
+          first_name: 'Имя',
+          last_name: 'Фамилия',
+          email: 'Почта',
+          phone: 'Телефон',
+          createdAt: 'Создано',
+          updatedAt: 'Обновлено'
+        }} />
+      </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {['Индекс', 'Роль', 'Имя', 'Фамилия', 'Почта', 'Номер', 'Создано:', 'Обновлено:']
+              .map((e) => <TableHead>{e}</TableHead>)}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data?.status ? data?.data.data.users.map((e, index) => (
+            <DefaultTableRow
+              mutate={mutate}
+              isSuccess={isSuccess}
+              isError={isError}
+              isPending={isPendingMutate}
+              data={e}
+              index={index}
+              refetch={refetch}
+              reset={reset}
+            />
+          )) : new Array(searchData.limit).fill(0).map(() => (
+            <TableRow>
+              <TableCell colSpan={8}>
+                <Skeleton className='h-12 w-full' />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {data?.data.data.total ? (
+        <PaginationElement<UserSearchParams>
+          total={data?.data.data.total}
+          limit={searchData.limit}
+          activePage={searchData.page}
+          set={setSearchData}
+        />
+      ) : (<PaginationSkeleton />)}
+    </div>
+  );
 }
 
 export {Users};
