@@ -1,5 +1,5 @@
 import * as React from "react";
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import type {Basket, User} from "../types/entities.t";
 
 
@@ -30,6 +30,16 @@ export function UserProvider({children}: { children: React.ReactNode }) {
     const [basket, setBasket] = useState<Basket[]>([])
     const [isOpen, setOpen] = useState(false)
     const toggleOpen = () => setOpen(!isOpen)
+
+    useEffect(() => {
+        const logout = () => {
+            setUser(null)
+            setBasket([])
+        }
+        console.log('Logount triggred!!')
+        window.addEventListener('auth:logout', logout)
+        return () => window.removeEventListener('auth:logout', logout)
+    }, []);
 
     return (
         <userContext.Provider value={{user, basket, setUser, setBasket, isOpen, toggleOpen}}>

@@ -20,8 +20,12 @@ apiService.interceptors.response.use((res) => res, async (err) => {
     if (axios.isAxiosError(err)) {
         const originalReq = err.config as InternalAxiosRequestConfig<unknown> & { _retry?: boolean } | undefined
 
-        if (originalReq?.url === '/users/refresh')
+        if (originalReq?.url === '/users/refresh') {
+            localStorage.removeItem('token')
+            console.log('refresh trigger')
+            window.dispatchEvent(new CustomEvent('auth:logout'))
             return Promise.reject(err)
+        }
 
         if (err.response?.status === 401 && originalReq && !originalReq?._retry) {
             originalReq._retry = true
@@ -33,6 +37,9 @@ apiService.interceptors.response.use((res) => res, async (err) => {
                 originalReq.headers.Authorization = `Bearer ${data.data.sessionToken}`
                 return apiService(originalReq)
             } catch (e) {
+                localStorage.removeItem('token')
+                console.log('error trigger')
+                window.dispatchEvent(new CustomEvent('auth:logout'))
                 return Promise.reject(e)
             }
         }

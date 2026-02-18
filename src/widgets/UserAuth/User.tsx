@@ -10,15 +10,14 @@ import {useNavigate} from "@tanstack/react-router";
 import {UserUpdateData} from "@/widgets/UserAuth/UserUpdateData.tsx";
 
 function User() {
-    const {user, setUser, setBasket} = useUserContext()
+    const {user} = useUserContext()
     const {mutate, isPending, isSuccess} = useLogout()
     const navigate = useNavigate()
     const selectedAdminTable = localStorage.getItem('selectedAdminTable') ?? ''
 
     useEffect(() => {
         if (isSuccess) {
-            setUser(null)
-            setBasket([])
+            window.dispatchEvent(new CustomEvent('auth:logout'))
             localStorage.removeItem('token')
             navigate({to: '/'})
         }
