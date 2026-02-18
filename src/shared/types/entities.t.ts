@@ -13,6 +13,7 @@ export type User = {
 
 export type UserSortBy = 'role' | 'first_name' | 'last_name' | 'email' | 'phone'
 export type ProductsSortBy = 'title' | 'price' | 'category_id'
+export type CategorySortBy = 'name'
 
 export type Basket = {
     id: string

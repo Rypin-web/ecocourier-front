@@ -1,5 +1,5 @@
 import type {AxiosRequestConfig} from "axios";
-import type {Products, User, UserRole} from "@/shared/types/entities.t.ts";
+import type {Categories, Products, User, UserRole} from "@/shared/types/entities.t.ts";
 
 export type TUserLoginRequiredData = {
     email: string
@@ -95,6 +95,13 @@ export type TGetProductsResponse = {
     }
 }
 
+export type TGetCategoriesResponse = {
+    data: {
+        total: number
+        categories: Categories[]
+    }
+}
+
 export type TUpdateProductsRequest = {
     id:string
     data: {
@@ -104,6 +111,18 @@ export type TUpdateProductsRequest = {
         price: number
         image: string
         category_id: string
+        createdAt: string
+        updatedAt: string
+    }
+}
+
+export type TUpdateCategoryRequest = {
+    id: string,
+    data: {
+        id: string
+        name: string
+        description?: string
+        image: string
         createdAt: string
         updatedAt: string
     }
