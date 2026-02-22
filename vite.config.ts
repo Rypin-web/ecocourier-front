@@ -6,21 +6,21 @@ import {tanstackRouter} from "@tanstack/router-vite-plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [
-        react({
-            babel: {
-                plugins: ['babel-plugin-react-compiler']
-            }
-        }),
-        tailwindcss(),
-        tanstackRouter({
-            target: 'react',
-            autoCodeSplitting: true,
-        })
-    ],
-    resolve: {
-        alias: {
-            "@": path.resolve(__dirname, "./src"),
-        },
+  plugins: [
+    react({
+      babel: {
+        plugins: ['babel-plugin-react-compiler']
+      }
+    }),
+    tailwindcss(),
+    tanstackRouter({
+      target: 'react',
+      autoCodeSplitting: true,
+    })
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
+  },
 })

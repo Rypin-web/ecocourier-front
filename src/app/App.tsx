@@ -13,21 +13,21 @@ const queryClient = new QueryClient({
   }
 })
 const router = createRouter({
-    routeTree,
-    context: {
-        queryClient
-    }
+  routeTree,
+  context: {
+    queryClient
+  }
 })
 
 function App() {
 
-    return (
-        <QueryClientProvider client={queryClient}>
-            <UserProvider>
-                <RouterProvider router={router} />
-            </UserProvider>
-        </QueryClientProvider>
-    )
+  return (
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </QueryClientProvider>
+  )
 }
 
 export default App
