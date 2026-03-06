@@ -3,7 +3,11 @@ import {type AxiosRequestConfig} from "axios";
 import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import type {ProductsSortBy} from "@/shared/types/entities.t.ts";
 import {apiService, type TApiDefResponse} from "@/shared/utils/apiService.ts";
-import type {TGetProductsResponse, TUpdateProductsRequest} from "@/shared/types/apiUserServices.t.ts";
+import type {
+  TCreateProductRequest, TCreateProductsResponse,
+  TGetProductsResponse,
+  TUpdateProductsRequest
+} from "@/shared/types/apiUserServices.t.ts";
 
 export function useGetProducts(params: AxiosRequestConfig['params'] & TSearchParams<ProductsSortBy>) {
   return useQuery({
@@ -11,6 +15,22 @@ export function useGetProducts(params: AxiosRequestConfig['params'] & TSearchPar
     queryFn: async () => await apiService.get<TApiDefResponse<TGetProductsResponse>>('/products', {
       params: params
     })
+  })
+}
+
+export function useCreateProducts() {
+  return useMutation({
+    mutationKey: ['POST_PRODUCT'],
+    mutationFn: async (data: TCreateProductRequest, params: AxiosRequestConfig['params']) =>
+      await apiService.post<TApiDefResponse<TCreateProductsResponse>>(
+        '/products',
+        data,
+        {
+          params: params,
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
   })
 }
 
