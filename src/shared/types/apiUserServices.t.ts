@@ -116,6 +116,18 @@ export type TUpdateProductsRequest = {
     }
 }
 
+export type TCreateProductRequest = {
+    title: string
+    description?: string
+    price: number
+    image?: File
+    category_id: string
+}
+
+export type TCreateProductsResponse = {
+    data: Products
+}
+
 export type TUpdateCategoryRequest = {
     id: string,
     data: {
