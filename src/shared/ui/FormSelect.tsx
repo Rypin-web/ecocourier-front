@@ -38,6 +38,8 @@ function FormSelect<T extends Entity>({field, fetchEntities, placeholder, label}
     queryFn: async () => await fetchEntities(debouncedSearch)
   })
 
+  console.log(data)
+
   return (
     <div className='grid gap-2'>
       {label && <Label htmlFor={field.name}>{label}</Label>}
@@ -49,9 +51,9 @@ function FormSelect<T extends Entity>({field, fetchEntities, placeholder, label}
             aria-expanded={open}
             className='w-full justify-between'
           >
-            {field.state.value
+            {field.state.value && !!data
               ? data?.data.data.data.find(item => item.id === field.state.value)?.name
-              : placeholder ?? 'Выберите...'
+              : placeholder && 'Выберите...'
             }
           </Button>
         </PopoverTrigger>
