@@ -20,7 +20,7 @@ function AdminNavigationItem({children, modelName,}: AdminNavigationItemProps) {
   return (
     <Item asChild variant={'outline'}
       className={cn(
-        'mb-3',
+        'mb-3 px-4 py-1.5',
         currentPath === '/admin/' + modelName ? 'bg-accent' : ''
       )}
     >
