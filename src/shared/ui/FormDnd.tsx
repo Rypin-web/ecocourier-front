@@ -5,7 +5,7 @@ import {TypographySmall} from "@/components/ui/typography.tsx";
 import {AspectRatio} from "@/components/ui/aspect-ratio.tsx";
 import {apiUrl} from "@/shared/constants/api.ts";
 import {cn} from "@/shared/utils/cn.ts";
-import {ExternalLink} from "lucide-react";
+import {CameraOff, ExternalLink} from "lucide-react";
 
 interface FormInputProps {
   field: FieldApi<any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any>
@@ -42,9 +42,13 @@ function FormDnd({field, image}: FormInputProps) {
               isDragAccept && 'size-30 translate-y-[10%] translate-x-[15%]',
               isDragReject && 'animate-wiggle'
             )} ratio={1 / 1}>
-              <img src={apiUrl + image} className='w-full h-full rounded-xl'/>
+              {
+                !image || image === 'Unset'
+                  ? <CameraOff className='w-full h-full rounded-xl opacity-65' />
+                  : <img src={apiUrl + image} className='w-full h-full rounded-xl' />
+              }
             </AspectRatio>
-            <ExternalLink size={70} color={isDragAccept? '#008236' : 'transparent'} className={cn(
+            <ExternalLink size={70} color={isDragAccept ? '#008236' : 'transparent'} className={cn(
               'absolute translate-x-[255%] translate-y-[-120%] !stroke-red z-1 scale-x-[-1] rotate-5',
               'transition-colors duration-250 ease-in-out delay-50',
               isDragAccept && 'animate-wiggle'
@@ -58,9 +62,9 @@ function FormDnd({field, image}: FormInputProps) {
               isDragAccept && 'size-30 translate-y-[10%] translate-x-[15%]',
               isDragReject && 'animate-wiggle'
             )} ratio={1 / 1}>
-              <img src={URL.createObjectURL(file)} className='w-full h-full rounded-xl'/>
+              <img src={URL.createObjectURL(file)} className='w-full h-full rounded-xl' />
             </AspectRatio>
-            <ExternalLink size={70} color={isDragAccept? '#008236' : 'transparent'} className={cn(
+            <ExternalLink size={70} color={isDragAccept ? '#008236' : 'transparent'} className={cn(
               'absolute translate-x-[255%] translate-y-[-120%] !stroke-red z-1 scale-x-[-1] rotate-5',
               'transition-colors duration-250 ease-in-out delay-50',
               isDragAccept && 'animate-wiggle'

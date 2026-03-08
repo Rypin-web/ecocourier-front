@@ -19,6 +19,7 @@ import type {Products} from "@/shared/types/entities.t.ts";
 import {useAppForm} from "@/shared/hooks/useAppForm.ts";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button.tsx";
+import {CameraOff} from "lucide-react";
 
 interface ProductTableRowProps {
   index: number
@@ -133,7 +134,11 @@ function ProductTableRow(
           <TableCell>{data.Category.name}</TableCell>
           <TableCell>
             <AspectRatio ratio={1 / 1}>
-              <img className='rounded-xl w-full h-full' src={apiUrl + data.image} />
+              {
+                !data.image || data.image === 'Unset'
+                  ? <CameraOff className='w-full h-full rounded-xl opacity-65' />
+                  : <img src={apiUrl + data.image} className='w-full h-full rounded-xl' />
+              }
             </AspectRatio>
           </TableCell>
           <TableCell>{data.createdAt}</TableCell>
