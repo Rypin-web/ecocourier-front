@@ -133,7 +133,7 @@ function ProductTableRow(
           <TableCell>{data.description}</TableCell>
           <TableCell>{data.Category.name}</TableCell>
           <TableCell>
-            <AspectRatio ratio={1 / 1}>
+            <AspectRatio ratio={1 / 1} className='flex flex-row justify-center place-items-center bg-sidebar-accent rounded-xl'>
               {
                 !data.image || data.image === 'Unset'
                   ? <CameraOff className='w-full h-full rounded-xl opacity-65' />

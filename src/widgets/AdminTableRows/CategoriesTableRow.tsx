@@ -123,10 +123,10 @@ function CategoriesTableRow(
           <TableCell>{data.name}</TableCell>
           <TableCell>{data.description}</TableCell>
           <TableCell>
-            <AspectRatio ratio={1 / 1}>
+            <AspectRatio ratio={1 / 1} className='flex flex-row justify-center place-items-center bg-sidebar-accent rounded-xl'>
               {
                 !data.image || data.image === 'Unset'
-                  ? <CameraOff className='w-full h-full rounded-xl opacity-65' />
+                  ? <CameraOff className='w-[80%] h-[80%] rounded-xl opacity-65' />
                   : <img src={apiUrl + data.image} className='w-full h-full rounded-xl' />
               }
             </AspectRatio>
