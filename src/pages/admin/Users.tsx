@@ -55,7 +55,7 @@ function Users() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.status ? data?.data.data.users.map((e, index) => (
+          {data?.status ? data?.data.data.data.map((e, index) => (
             <DefaultTableRow
               mutate={mutate}
               isSuccess={isSuccess}

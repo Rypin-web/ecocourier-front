@@ -58,7 +58,7 @@ export type TUserRefreshResponseData = {
 export type TGetUsersResponseData = {
     data: {
         total: number
-        users: User[]
+        data: User[]
     }
 }
 
@@ -91,14 +91,14 @@ export type useUpdateUserByIdMutationProps = {
 export type TGetProductsResponse = {
     data: {
         total: number
-        products: Products[]
+        data: Products[]
     }
 }
 
 export type TGetCategoriesResponse = {
     data: {
         total: number
-        categories: Categories[]
+        data: Categories[]
     }
 }
 

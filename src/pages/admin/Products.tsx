@@ -50,6 +50,7 @@ function Products() {
           createdAt: 'Создано',
           updatedAt: 'Обновлено'
         }} />
+
       </div>
       <Table>
         <TableHeader>
@@ -59,7 +60,7 @@ function Products() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {isSuccessQuery && data?.data.data.products.map((e, index) => (
+          {isSuccessQuery && data?.data.data.data.map((e, index) => (
             <ProductTableRow
               key={index}
               data={e}
@@ -88,6 +89,7 @@ function Products() {
         </TableBody>
       </Table>
       {data?.data.data.total ? (
+
         <PaginationElement<ProductsSearchParams>
           total={data?.data.data.total}
           limit={searchData.limit}

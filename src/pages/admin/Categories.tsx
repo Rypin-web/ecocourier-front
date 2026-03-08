@@ -58,7 +58,7 @@ function Categories() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {isSuccessQuery && data?.data.data.categories.map((e, index) => (
+          {isSuccessQuery && data?.data.data.data.map((e, index) => (
             <CategoriesTableRow
               key={index}
               data={e}
