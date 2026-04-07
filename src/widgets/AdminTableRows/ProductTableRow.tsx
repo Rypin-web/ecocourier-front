@@ -20,6 +20,7 @@ import {useAppForm} from "@/shared/hooks/useAppForm.ts";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button.tsx";
 import {CameraOff} from "lucide-react";
+import z from "zod";
 
 interface ProductTableRowProps {
   index: number
@@ -47,6 +48,19 @@ interface defaultValuesForm {
   createdAt: string
   updatedAt: string
 }
+
+const schema = z.object({
+  id: z.string(),
+  title: z.string().min(3).max(128),
+  description: z.string().max(2000).optional(),
+  price: z.number().min(0),
+  category_id: z.string(),
+  image: z.union([z.string(), z.file()]).optional(),
+  createdAt: z.string(),
+  updatedAt: z.string()
+})
+
+type TFormDefValues = z.infer<typeof schema>
 
 function ProductTableRow(
   {
@@ -77,7 +91,10 @@ function ProductTableRow(
     updatedAt: data.updatedAt
   }
   const form = useAppForm({
-    defaultValues: defaultValues,
+    defaultValues: defaultValues as TFormDefValues,
+    validators: {
+      onSubmit: schema
+    },
     onSubmit: ({value}) => {
       const formData = new FormData()
       formData.append('id', value.id)
@@ -94,7 +111,6 @@ function ProductTableRow(
         formData.append('image', imageFile)
       }
       console.log('formData', formData)
-
 
       mutate({
         id: value.id,
@@ -150,7 +166,7 @@ function ProductTableRow(
           <DialogTitle>Изменить данные</DialogTitle>
         </DialogHeader>
         <form
-          className='overflow-y-scroll max-h-[700px]'
+          className='overflow-y-scroll max-h-[700px] pr-4'
           onSubmit={async (e) => {
             e.preventDefault()
             await form.handleSubmit()
