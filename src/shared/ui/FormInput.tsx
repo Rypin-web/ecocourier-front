@@ -2,6 +2,7 @@ import {cn} from "@/shared/utils/cn.ts";
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import type {FieldApi} from "@tanstack/react-form";
+import {TypographyP} from "@/components/ui/typography.tsx";
 
 type TFormInputProps = {
     field: FieldApi<any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any>
@@ -30,9 +31,9 @@ export function FormInput(
                 onChange={(e) => field.handleChange(e.target.value)}
                 {...props}
             />
-            <p className={cn('text-sm text-destructive mb-4')}>
+            <TypographyP className={cn('text-sm text-destructive mb-4')}>
                 {field.state.meta.errors.length > 0 && field.state.meta.errors[0].message}
-            </p>
+            </TypographyP>
 
         </div>
     )
