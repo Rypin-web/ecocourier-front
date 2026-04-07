@@ -20,7 +20,7 @@ export function FormInput(
         ...props
     }: TFormInputProps & React.ComponentProps<'input'>) {
     return (
-        <div className={cn('grid gap-2')}>
+        <div className={cn('grid gap-2', (field.state.meta.errors.length === 0) && 'mb-4')}>
             {label && <Label htmlFor={field.name}>{label}</Label>}
             <Input
                 id={field.name}
@@ -31,9 +31,9 @@ export function FormInput(
                 onChange={(e) => field.handleChange(e.target.value)}
                 {...props}
             />
-            <TypographyP className={cn('text-sm text-destructive mb-4')}>
-                {field.state.meta.errors.length > 0 && field.state.meta.errors[0].message}
-            </TypographyP>
+          {field.state.meta.errors.length > 0 && <TypographyP className={cn('text-sm text-destructive !mt-0 mb-4')}>
+            {field.state.meta.errors[0].message}
+          </TypographyP>}
 
         </div>
     )
