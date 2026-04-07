@@ -17,7 +17,7 @@ export function FormInput(
         type = 'text',
         label = undefined,
         ...props
-    }: TFormInputProps) {
+    }: TFormInputProps & React.ComponentProps<'input'>) {
     return (
         <div className={cn('grid gap-2')}>
             {label && <Label htmlFor={field.name}>{label}</Label>}
