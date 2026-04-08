@@ -1,7 +1,12 @@
 import {useState} from "react";
 import type {TSearchParams} from "@/shared/types/serchParams.t.ts";
 import type {ProductsSortBy} from "@/shared/types/entities.t.ts";
-import {useDeleteProduct, useGetProducts, useUpdateProduct} from "@/shared/hooks/useProductsService.ts";
+import {
+  useCreateProducts,
+  useDeleteProduct,
+  useGetProducts,
+  useUpdateProduct
+} from "@/shared/hooks/useProductsService.ts";
 import {SortButton} from "@/features/SortButton.tsx";
 import {SelectSortBy} from "@/features/SelectSortBy.tsx";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
@@ -12,6 +17,7 @@ import {ProductTableRow} from "@/widgets/AdminTableRows/ProductTableRow.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {useDebounce} from "@/shared/hooks/useDebounce.ts";
 import {useSearchParams} from "@/shared/hooks/useSearchParams.ts";
+import {ProductCreateButton} from "@/features/AdminCreateButtons/ProductCreateButton.tsx";
 
 type ProductsSearchParams = TSearchParams<ProductsSortBy>
 
@@ -28,6 +34,13 @@ function Products() {
   const {data, isSuccess: isSuccessQuery, refetch} = useGetProducts(searchData)
   const {mutate, isSuccess, isError, isPending, reset} = useUpdateProduct()
   const {
+    mutate: createProduct,
+    isError: isErrorCreate,
+    isPending:isPendingCreate,
+    isSuccess: isSuccessCreate,
+    reset: resetCreate
+  } = useCreateProducts()
+  const {
     mutate: deleteProduct,
     isSuccess: isSuccessDelete,
     reset: resetDelete,
@@ -38,6 +51,14 @@ function Products() {
   return (
     <div>
       <div className='flex flex-row gap-3 mb-5 place-items-center'>
+        <ProductCreateButton
+          isPending={isPendingCreate}
+          isError={isErrorCreate}
+          mutate={createProduct}
+          refetch={refetch}
+          reset={resetCreate}
+          isSuccess={isSuccessCreate}
+        />
         <Input className='max-w-[360px]' placeholder='Искать...' onChange={(e) => setSearchProduct(e.target.value)} />
         <SortButton<ProductsSearchParams> set={setSearchData} type={searchData.sort} />
         <span>Сортировать по: </span>
