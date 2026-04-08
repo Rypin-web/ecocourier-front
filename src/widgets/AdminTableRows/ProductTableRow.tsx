@@ -110,7 +110,6 @@ function ProductTableRow(
         })
         formData.append('image', imageFile)
       }
-      console.log('formData', formData)
 
       mutate({
         id: value.id,
